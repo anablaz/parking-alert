@@ -53,6 +53,26 @@
       }
     </style>
 
+<style>
+  #leafletMap {
+    position: relative; /* Ensure positioning context for z-index */
+    width: 100%;
+    height: 500px;
+    z-index: 0; /* Set the map's z-index lower than notifications */
+  }
+
+  /* Adjusting the map controls z-index */
+  .leaflet-control {
+    z-index: 1; /* Make sure map controls are below notifications */
+  }
+
+  /* Notifications or other elements with higher z-index */
+  #notifications {
+    position: relative;
+    z-index: 9999;  /* Higher z-index to appear on top */
+  }
+</style>
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -95,8 +115,8 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse" position: relative; z-index: 9999999;>
+          <ul class="nav navbar-nav" style="z-index: 9999999;">
             <li class="dropdown">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#"
                 ><i style="font-size: 20px" class="icon-conversation"></i>
@@ -104,7 +124,7 @@
               >
 
               <ul
-                style="margin: 11px 0 0 9px"
+                style="margin: 11px 0 0 9px; z-index: 999999;"
                 role="menu"
                 class="dropdown-menu dropdown-wrap"
               >
@@ -1205,6 +1225,9 @@
           attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
         }
       ).addTo(map);
+
+      // Ensure map controls are behind other elements
+      L.DomUtil.get('map').style.zIndex = 0; // Ensure map controls are behind
 
       // Marker for Ljubljana
       L.marker([46.056946, 14.505751])
