@@ -58,12 +58,13 @@
     position: relative; /* Ensure positioning context for z-index */
     width: 100%;
     height: 500px;
-    z-index: 0; /* Set the map's z-index lower than notifications */
+    z-index: 1; /* Set the map's z-index lower than notifications */
   }
 
   /* Adjusting the map controls z-index */
   .leaflet-control {
-    z-index: 1; /* Make sure map controls are below notifications */
+    position: absolute; /* Ensures map controls are placed on top of map */
+      z-index: 0; /* Make sure map controls are below notifications */
   }
 
   /* Notifications or other elements with higher z-index */
@@ -1225,9 +1226,6 @@
           attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
         }
       ).addTo(map);
-
-      // Ensure map controls are behind other elements
-      L.DomUtil.get('map').style.zIndex = 0; // Ensure map controls are behind
 
       // Marker for Ljubljana
       L.marker([46.056946, 14.505751])
