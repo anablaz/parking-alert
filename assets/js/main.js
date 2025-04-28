@@ -1,3 +1,4 @@
+
 //Sliding Effect Control
 head.js("assets/js/skin-select/jquery.cookie.js");
 head.js("assets/js/skin-select/skin-select.js");

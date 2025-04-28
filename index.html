@@ -23,6 +23,7 @@
       href="assets/js/progress-bar/number-pb.css"
     />
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+  
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -1127,6 +1128,8 @@
       setInterval(updateDate, 60000);
     </script>
 
+    <script type="module" src="assets/js/data.js"></script>
+
     <!-- END OF RIGHT SLIDER CONTENT-->
 
     <script src="assets/js/progress-bar/src/jquery.velocity.min.js"></script>
@@ -1138,7 +1141,8 @@
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
     <script type="text/javascript" src="assets/js/load.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+
 
     <!-- GAGE -->
 
@@ -1216,22 +1220,25 @@
     </script>
 
     <!-- LEAFLET MAP -->
-    <script>
-      var map = L.map("leafletMap").setView([46.056946, 14.505751], 13);
+    <script type="module">
+      import { parkirnaMesta } from './assets/js/data.js';
+    // Initialize the map and set the view to Ljubljana's coordinates
+    var map = L.map("leafletMap").setView([46.056946, 14.505751], 13);
 
-      // ✅ Soft colored tile layer, close to Google Maps
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-        {
-          attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
-        }
-      ).addTo(map);
+    // Soft colored tile layer, close to Google Maps
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+      {
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+      }
+    ).addTo(map);
 
-      // Marker for Ljubljana
-      L.marker([46.056946, 14.505751])
+    parkirnaMesta.forEach(function(parkirisce) {
+      L.marker([parkirisce.latitude, parkirisce.longitude])
         .addTo(map)
-        .bindPopup("Ljubljana, Slovenia")
-        .openPopup();
+        .bindPopup(parkirisce.ime);
+    });
+      console.log(parkirnaMesta); // Accessing parkirnaMesta after the file has been loaded
     </script>
   </body>
 </html>
