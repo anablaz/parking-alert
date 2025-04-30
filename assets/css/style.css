@@ -2361,7 +2361,6 @@ b#speed {
   -moz-background-size: 52% 52%;
   -webkit-background-size: 52% 52%;
   background-size: 52% 52%;
-  background-repeat: no-repeat;
 }
 .paper-wrap:before {
   content: "";

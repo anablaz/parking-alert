@@ -1,12 +1,3 @@
-
-//Sliding Effect Control
-head.js("assets/js/skin-select/jquery.cookie.js");
-head.js("assets/js/skin-select/skin-select.js");
-
-//Showing Date
-head.js("assets/js/clock/date.js");
-
-
 //NEWS STICKER
 head.js("assets/js/newsticker/jquery.newsTicker.js", function() {
 
@@ -21,7 +12,6 @@ head.js("assets/js/newsticker/jquery.newsTicker.js", function() {
 });
 
 //------------------------------------------------------------- 
-
 
 ////Acordion and Sliding menu
 
@@ -64,21 +54,19 @@ head.js("assets/js/nano/jquery.nanoscroller.js", function() {
 
 });
 //------------------------------------------------------------- 
-
-//------------------------------------------------------------- 
 //PAGE LOADER
-head.js("assets/js/pace/pace.js", function() {
+// Define paceOptions globally before loading pace.js
+var paceOptions = {
+    ajax: false,
+    document: false,
+    eventLag: false,
+    elements: {
+        selectors: ['.my-page']
+    }
+};
 
-    paceOptions = {
-        ajax: false, // disabled
-        document: false, // disabled
-        eventLag: false, // disabled
-        elements: {
-            selectors: ['.my-page']
-        }
-    };
-
-});
+// Now load pace.js
+head.js("assets/js/pace/pace.js");
 
 //------------------------------------------------------------- 
 
