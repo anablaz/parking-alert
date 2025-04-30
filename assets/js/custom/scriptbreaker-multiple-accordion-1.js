@@ -1,4 +1,11 @@
-
+/*
+ * jQuery UI Multilevel accordionze v.1
+ * 
+ * Copyright (c) 2011 Pieter Pareit
+ *
+ * http://www.scriptbreaker.com
+ *
+ */
 //plugin definition
 (function($){
     $.fn.extend({
