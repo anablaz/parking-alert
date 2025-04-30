@@ -17,11 +17,6 @@
     <link rel="stylesheet" href="assets/css/loader-style.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="assets/js/progress-bar/number-pb.css"
-    />
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
   
     <link
@@ -45,7 +40,7 @@
         }
 
         .wrap-fluid {
-          margin-left: 0 !important; /* Ensure other elements are not pushed by the sidebar */
+          margin-left: 0 !important;
         }
 
         .navbar {
@@ -75,11 +70,6 @@
   }
 </style>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- Fav and touch icons -->
     <link rel="shortcut icon" href="assets/ico/minus.png" />
   </head>
 
@@ -364,7 +354,7 @@
           justify-content: start;
           align-items: center;
           gap: 20px;
-          margin-top: 7px;
+          margin-top: 17px;
         "
       >
         <h1
@@ -792,7 +782,7 @@
           month: "long",
           day: "numeric",
         };
-        var currentDate = date.toLocaleDateString("en-US", options); // Adjust locale as needed
+        var currentDate = date.toLocaleDateString("sl-SI", options); // Adjust locale as needed
         $("#Date").text(currentDate);
       }
 
@@ -806,51 +796,19 @@
 
     <!-- END OF RIGHT SLIDER CONTENT-->
 
-    <script src="assets/js/progress-bar/src/jquery.velocity.min.js"></script>
-    <script src="assets/js/progress-bar/number-pb.js"></script>
-    <script src="assets/js/progress-bar/progress-app.js"></script>
-
     <!-- MAIN EFFECT -->
     <script type="text/javascript" src="assets/js/preloader.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="assets/js/app.js"></script>
     <script type="text/javascript" src="assets/js/load.js"></script>
     <script type="module" src="assets/js/main.js"></script>
 
 
     <!-- GAGE -->
-
-    <script
-      type="text/javascript"
-      src="assets/js/chart/jquery.flot.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="assets/js/chart/jquery.flot.resize.js"
-    ></script>
-    <script type="text/javascript" src="assets/js/chart/realTime.js"></script>
-    <script
-      type="text/javascript"
-      src="assets/js/speed/canvasgauge-coustom.js"
-    ></script>
     <script
       type="text/javascript"
       src="assets/js/countdown/jquery.countdown.js"
     ></script>
 
-    <script>
-      var gauge4 = new Gauge("canvas4", {
-        mode: "needle",
-        range: {
-          min: 0,
-          max: 90,
-        },
-      });
-      gauge4.draw(Math.floor(Math.random() * 90));
-      var run = setInterval(function () {
-        gauge4.draw(Math.floor(Math.random() * 90));
-      }, 3500);
-    </script>
 
     <script type="text/javascript">
       var output, started, duration, desired;
@@ -882,14 +840,22 @@
       }, 5000);
     </script>
     <script type="text/javascript">
-      $("#getting-started").countdown("2015/01/01", function (event) {
-        $(this).html(
-          event.strftime(
-            "<span>%M</span>" +
-              '<span class="start-min">:</span>' +
-              '<span class="start-min">%S</span>'
-          )
-        );
+      function slPlural(value, one, twoToFour, other) {
+        if (value === 1) return one;
+        if (value >= 2 && value <= 4) return twoToFour;
+        return other;
+      }
+
+      $("#getting-started").countdown("2025/12/31", function (event) {
+        var offset = event.offset;
+
+        var output = ""
+          + "<span>" + offset.minutes + "</span> "
+          + "<span>" + slPlural(offset.minutes, 'minuta', 'minuti', 'minut') + "</span> "
+          + "<span>" + offset.seconds + "</span> "
+          + "<span>" + slPlural(offset.seconds, 'sekunda', 'sekundi', 'sekund') + "</span>";
+
+        $(this).html(output);
       });
     </script>
 

@@ -10,6 +10,7 @@
 [class*="fontawesome-"]:before {
   font-family: "FontAwesome", sans-serif;
 }
+
 body {
   color: #9ea7b3 !important;
   font-family: "Open Sans", Arial, sans-serif !important;
@@ -25,6 +26,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
 /*
   PREALOADER
  */
@@ -40,11 +42,10 @@ a:hover {
   right: 0;
   bottom: 0;
   background-color: rgba(37, 45, 59, 0.8); /* mask color */
-  z-index: 2000; /* ensures it stays on top */
-  /* background-image: url("../img/overlays/06.png"); */
-  /* background-repeat: repeat; */
+  z-index: 2000;
 }
 
+/* Map Container */
 #mapContainer {
   font-family: sans-serif;
   background: #fff;
