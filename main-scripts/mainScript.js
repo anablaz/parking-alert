@@ -1,33 +1,53 @@
 // Uporabnik se lahko registrira
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const usernameInput = document.getElementById("inputUsernameEmail");
+    const passwordInput = document.getElementById("inputPassword");
+  
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+  
+      if (username === "" || password === "") {
+        showToast("Vsa polja so obvezna.", "error");
+      } else {
+        // Simulate successful registration
+        // You could push this to some array if needed
+        localStorage.setItem("registrationSuccess", "true");
+        showToast("Registracija uspešna!", "success");
+  
+        setTimeout(() => {
+          window.location.href = "/front-end/prijava.html";
+        }, 1500);
+      }
+    });
+  });
 
+  
 // Uporabnik se lahko prijavi v aplikacijo
 // Auth
 (function () {
-    const publicPages = ["prijava.html", "ustvariRacun.html", ""];
-    const currentPath = window.location.pathname;
-    const isPublic = publicPages.some((page) => currentPath.includes(page));
-  
-    if (!isPublic) {
-      const user = JSON.parse(localStorage.getItem("loggedInUser"));
-      if (!user) {
-        window.location.href = "/front-end/prijava.html";
-      }
+  const publicPages = ["prijava.html", "ustvariRacun.html", ""];
+  const currentPath = window.location.pathname;
+  const isPublic = publicPages.some((page) => currentPath.includes(page));
+
+  if (!isPublic) {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user) {
+      window.location.href = "/front-end/prijava.html";
     }
-  })();
+  }
+})();
 
 //Sama prijava
 function login(username, password) {
-  const user = loginUsers.find(
-    (u) => u.username === username && u.password === password
+  return (
+    loginUsers.find(
+      (u) => u.username === username && u.password === password
+    ) || null
   );
-
-  if (user) {
-    console.log(`Login successful. Welcome, ${user.name} (${user.role})`);
-    return user;
-  } else {
-    console.log("Login failed: invalid username or password.");
-    return null;
-  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -40,25 +60,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const username = usernameInput.value.trim();
     const password = passwordInput.value.trim();
-
     const user = login(username, password);
 
     if (user) {
       localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-      // Redirect on successful login
-      window.location.href = "/front-end/index.html";
+      showToast("Prijava uspešna!", "success");
+      setTimeout(() => {
+        window.location.href = "/front-end/index.html";
+      }, 1500);
     } else {
-      alert("Napačno uporabniško ime ali geslo.");
+      showToast("Napačno uporabniško ime ali geslo.", "error");
     }
   });
 });
 
 // Uporabnik se lahko odjavi iz aplikacije
 function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.replace("/front-end/prijava.html");
-  }
+  localStorage.clear(); // if you're only using localStorage
+  sessionStorage.clear(); // in case you're also using this
+  document.cookie =
+    "loggedInUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  window.location.replace("/front-end/prijava.html");
+}
 
 // Sprememba osebnih podatkov
 function editField(fieldId, triggerElement) {
@@ -88,13 +111,13 @@ function editField(fieldId, triggerElement) {
 
 // Vnos parkirne lokacije (ročno ali z GPS)
 
-// Spremljanje redarjev (simulirano) 
+// Spremljanje redarjev (simulirano)
 
-// Opozorilo, če je redar blizu 
+// Opozorilo, če je redar blizu
 
 // Možnost potrditve opozorila
 
-// Pregled preteklih opozoril 
+// Pregled preteklih opozoril
 
 // Uporabnik lahko izbriše račun
 function openDeleteModal() {
