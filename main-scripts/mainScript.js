@@ -1,8 +1,9 @@
 // Uporabnik se lahko registrira
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
+    const form = document.querySelector("#registerForm");
     const usernameInput = document.getElementById("inputUsernameEmail");
     const passwordInput = document.getElementById("inputPassword");
+    const loginUsers = [];
   
     form.addEventListener("submit", function (e) {
       e.preventDefault();
