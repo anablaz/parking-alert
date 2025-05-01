@@ -49,4 +49,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   
-  
+          // Ensure user data is loaded before trying to use it
+          window.onload = function() {
+            // Assuming userLoginData.js contains the `loginUsers` array
+            if (typeof loginUsers !== 'undefined') {
+              // Here we just pick the first user for demo purposes, you can pick based on logged-in user
+              const loggedInUser = loginUsers[0]; // Replace with your logic to get the logged-in user
+        
+              // Function to update profile fields dynamically
+              function updateProfile(user) {
+                document.getElementById('userName').value = user.name;
+                document.getElementById('surname').value = user.surname;
+                document.getElementById('email').value = user.email;
+                document.getElementById('bio').value = user.bio;
+                document.getElementById('location').value = user.location;
+                document.getElementById('phone').value = user.phone;
+                document.getElementById('profileImage').src = user.image;
+                document.getElementById('userNameDisplay').textContent = `${user.name} ${user.surname}`;
+              }
+        
+              // Call function to update the profile with the logged-in user's details
+              updateProfile(loggedInUser);
+            } else {
+              console.error('User data not loaded correctly!');
+            }
+          };
+        
+          // Edit field function (this just makes fields editable)
+          function editField(fieldId, iconElement) {
+            const field = document.getElementById(fieldId);
+            if (field.readOnly) {
+              field.readOnly = false;
+              iconElement.innerHTML = '<i class="fa fa-save"></i>';
+            } else {
+              field.readOnly = true;
+              iconElement.innerHTML = '<i class="fa fa-edit"></i>';
+            }
+          }

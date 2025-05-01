@@ -42,6 +42,9 @@
 
     <!-- Glavne razrede in funkcije -->
     <script src="/main-scripts/mainScript.js"></script>
+
+    <!--User Data-->
+    <script src="/front-end/assets/js/dummyData/userLoginData.js"></script>
   </head>
 
   <body>
@@ -526,14 +529,11 @@
             </button>
           </div>
           <div class="row rowTable">
-            <div class="col-sm-12 profileSectionContainer" s>
+            <div class="col-sm-12 profileSectionContainer">
               <!-- Profile Image -->
               <div class="imageContainer">
                 <div class="profile-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Profile Image"
-                  />
+                  <img id="profileImage" alt="Profile Image" />
                 </div>
                 <div class="profile-image-edit">
                   <button class="btnProfile btn-primary" type="button">
@@ -541,77 +541,60 @@
                   </button>
                 </div>
               </div>
-
+          
               <!-- Profile Details -->
               <div class="profile-details">
-                <h2 class="user-name">Uporabnik</h2>
-
+                <h2 id="userNameDisplay" class="user-name">Uporabnik</h2>
+          
                 <!-- Input za ime -->
                 <div class="user-info">
                   <label for="name">Ime:</label>
-                  <input type="text" id="userName" value="John Doe" readonly />
+                  <input type="text" id="userName" value="" readonly />
                   <span class="edit-icon" onclick="editField('userName', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-
+          
                 <!-- Input za priimek -->
                 <div class="user-info">
                   <label for="surname">Priimek:</label>
-                  <input type="text" id="surname" value="Doe" readonly />
+                  <input type="text" id="surname" value="" readonly />
                   <span class="edit-icon" onclick="editField('surname', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-
-                <!--  Input za email -->
+          
+                <!-- Input za email -->
                 <div class="user-info">
                   <label for="email">Email:</label>
-                  <input
-                    type="email"
-                    id="email"
-                    value="john.doe@example.com"
-                    readonly
-                  />
+                  <input type="email" id="email" value="" readonly />
                   <span class="edit-icon" onclick="editField('email', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-
+          
                 <!-- Input za bio -->
                 <div class="user-info">
                   <label for="bio">Bio:</label>
-                  <textarea id="bio" readonly>
-A short description about the user can go here.</textarea
-                  >
+                  <textarea id="bio" readonly></textarea>
                   <span class="edit-icon" onclick="editField('bio', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-
+          
                 <!-- Input za lokacijo -->
                 <div class="user-info">
                   <label for="location">Lokacija:</label>
-                  <input
-                    type="text"
-                    id="location"
-                    value="New York, USA"
-                    readonly
-                  />
+                  <input type="text" id="location" value="" readonly />
                   <span class="edit-icon" onclick="editField('location', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-
+          
                 <!-- Input za telefon -->
                 <div class="user-info">
                   <label for="phone">Telefon:</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    value="(123) 456-7890"
-                    readonly
-                  />
+                  <input type="tel" id="phone" value="" readonly />
                   <span class="edit-icon" onclick="editField('phone', this)">
                     <i class="fa fa-edit"></i>
                   </span>
