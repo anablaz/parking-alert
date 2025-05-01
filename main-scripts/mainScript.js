@@ -44,13 +44,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Sama prijava
 function login(username, password) {
-  return (
-    loginUsers.find(
+    const user = loginUsers.find(
       (u) => u.username === username && u.password === password
-    ) || null
-  );
-}
-
+    );
+  
+    if (user) {
+      // Save the user data and the last login time to localStorage
+      const loginData = {
+        ...user,
+        lastLogin: new Date().toISOString(), // Store current date-time
+      };
+      localStorage.setItem("loggedInUser", JSON.stringify(loginData));
+  
+      return loginData;
+    }
+    return null;
+  }
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
   const usernameInput = document.getElementById("inputUsernameEmail");

@@ -37,6 +37,9 @@
     <!-- Preusmeri na prijava če ni logiran -->
     <script src="/front-end/assets/js/authUser.js"></script>
 
+    <!-- Preberi logiranega uporabnika-->
+    <script src="/front-end/assets/js/readData/readLoggedInUser.js"></script>
+
     <!-- Glavne razrede in funkcije -->
     <script src="/main-scripts/mainScript.js"></script>
   </head>
@@ -213,11 +216,9 @@
         <ul style="margin-right: 0" class="nav navbar-nav navbar-right">
           <li>
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <img
-                alt=""
-                class="admin-pic img-circle"
-                src="http://api.randomuser.me/portraits/thumb/men/10.jpg"
-              />Živjo! Uporabnik <b class="caret"></b>
+              <img id="user-image" alt="" class="admin-pic img-circle" />Živjo!
+              <span id="user-name">Uporabnik</span>
+              <b class="caret"></b>
             </a>
             <ul
               style="margin-top: 14px"
@@ -225,7 +226,7 @@
               class="dropdown-setting dropdown-menu"
             >
               <li>
-                <a href="/profil.html">
+                <a href="/front-end/profil.html">
                   <span class="entypo-user"></span>&#160;&#160;Moj Profil</a
                 >
               </li>
@@ -437,8 +438,10 @@
                   </button>
                   <span class="tittle-alert entypo-info-circled"></span>
                   Dobrodošli nazaj,&nbsp;
-                  <strong>Uporabnik!</strong>&nbsp;&nbsp;Vaša zadnja prijava je
-                  bila včeraj, 16:54 PM
+                  <strong id="user-name-strong">Uporabnik!</strong
+                  >&nbsp;&nbsp;<span id="last-login-time"
+                    >Vaša zadnja prijava je bila včeraj, 16:54 PM</span
+                  >
                 </div>
               </div>
             </div>
