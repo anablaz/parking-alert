@@ -51,4 +51,4 @@ Za pomoč pri uporabi aplikacije ali prijavo težav, nas lahko kontaktirate prek
 
 - **Parking Alert d.d.**
   
-  *Razvito kot del študijskega projekta za študente FRI.*
+  *Razvito kot del študijskega projekta za študente FRI, pri predmetu RIS*
