@@ -1,0 +1,223 @@
+.profileSectionContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.profileHeading{
+    font-size: 2em;
+    color: #333333ac;
+    margin-bottom: 20px;
+}
+
+  /* Basic Profile Section Styling */
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+}
+
+.profile-image {
+  text-align: center;
+  width: 100%;
+}
+
+.profile-image img {
+  width: 250px;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  display: block;
+  margin: 0 auto;
+}
+
+.btnProfile {
+    border-color: #c7d5e0 !important;
+    background: #ffffff;
+    display: inline-block;
+    padding: 6px 12px !important;
+    margin-bottom: 0;
+    font-size: 12px !important;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0953a3cc;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+  /* Profile Details Styling */
+  .profile-details {
+    font-family: 'Arial', sans-serif;
+    color: #444;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .profile-details h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .profile-details .user-info {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .profile-details .user-info label {
+    font-size: 1em;
+    color: #333;
+    margin-right: 10px;
+    width: 100px;
+  }
+
+  .profile-details input, .profile-details textarea {
+    width: calc(100% - 120px);
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+
+
+  .profile-details textarea {
+    resize: vertical;
+    height: 100px;
+  }
+
+  .profile-details input,
+  .profile-details textarea {
+    width: calc(100% - 120px);
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    color: #7d7979;
+    background-color: #fbfbfb;
+  }
+  
+  .profile-details .user-info {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .profile-details input:focus,
+  .profile-details textarea:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .profile-details textarea {
+    resize: vertical;
+    height: 100px;
+  }
+
+  /* Style the button */
+.edit-btn {
+    background-color: #0953a3cc;
+    color: white;
+    padding: 8px 13px;
+    font-size: 13px;
+    border: none;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .edit-btn i {
+    font-size: 20px;
+  }
+  
+  /* Optional hover effect */
+  .edit-btn:hover {
+    background-color: #007bff;
+  }
+  
+  /* Optional focus effect */
+  .edit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  input.editing {
+    background-color: #fff;
+    color: #000;
+    border-color: #007bff;
+  }
+  
+  .edit-icon i {
+    cursor: pointer;
+    color: #007bff;
+    font-size: 18px;
+    margin-left: 10px;
+  }
+  
+  .save-btn {
+    margin-left: 10px;
+    padding: 6px 12px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .save-btn:hover {
+    background-color: #218838;
+  }
+
+ /* Responsive Styling */
+  @media (max-width: 768px) {
+    .profileSectionContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile-image {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    .profile-details {
+      width: 100%;
+    }
+  }

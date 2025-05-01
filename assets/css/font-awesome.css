@@ -1336,3 +1336,7 @@
 .fa-plus-square-o:before {
   content: "\f196";
 }
+
+.fa-edit:before {
+  content: "\f044"; /* Font Awesome Edit Icon */
+}
