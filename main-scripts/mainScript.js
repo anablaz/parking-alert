@@ -3,14 +3,13 @@
 // Uporabnik se lahko prijavi v aplikacijo
 // Auth
 (function () {
-    const publicPages = ["prijava.html", "ustvariRacun.html", ""]; // "" handles root access
+    const publicPages = ["prijava.html", "ustvariRacun.html", ""];
     const currentPath = window.location.pathname;
     const isPublic = publicPages.some((page) => currentPath.includes(page));
   
     if (!isPublic) {
       const user = JSON.parse(localStorage.getItem("loggedInUser"));
       if (!user) {
-        // Optional: console.log("User not logged in, redirecting to login...");
         window.location.href = "/front-end/prijava.html";
       }
     }
@@ -37,15 +36,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordInput = document.getElementById("inputPassword");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // prevent default form submission
+    e.preventDefault();
 
     const username = usernameInput.value.trim();
     const password = passwordInput.value.trim();
 
-    const user = login(username, password); // <-- use your existing login function
+    const user = login(username, password);
 
     if (user) {
-      // Optionally store login info (if you want session persistence)
       localStorage.setItem("loggedInUser", JSON.stringify(user));
 
       // Redirect on successful login
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Uporabnik se lahko odjavi iz aplikacije
 function logout() {
     localStorage.removeItem("loggedInUser");
-    window.location.replace("/front-end/prijava.html"); // use replace to avoid back button returning to protected page
+    window.location.replace("/front-end/prijava.html");
   }
 
 // Sprememba osebnih podatkov
@@ -88,6 +86,16 @@ function editField(fieldId, triggerElement) {
   }
 }
 
+// Vnos parkirne lokacije (ročno ali z GPS)
+
+// Spremljanje redarjev (simulirano) 
+
+// Opozorilo, če je redar blizu 
+
+// Možnost potrditve opozorila
+
+// Pregled preteklih opozoril 
+
 // Uporabnik lahko izbriše račun
 function openDeleteModal() {
   fetch("modals/izbrisiRacunModal.html")
@@ -111,3 +119,5 @@ function openDeleteModal() {
 function closeModal() {
   document.getElementById("deleteModal").style.display = "none";
 }
+
+// Poročanje o opaženih redarjih
