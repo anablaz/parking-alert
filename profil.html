@@ -9,17 +9,21 @@
 
     <!-- Site icon -->
 
-    <link rel="icon" href="/assets/img/parking-alert-logo.png" type="image/png">
+    <link
+      rel="icon"
+      href="/assets/img/parking-alert-logo.png"
+      type="image/png"
+    />
 
     <!-- Styles -->
 
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/loader-style.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/css//profil.css">
+    <link rel="stylesheet" href="assets/css//profil.css" />
 
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-  
+
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -35,7 +39,7 @@
     <!-- TOP NAVBAR -->
     <nav role="navigation" class="navbar navbar-static-top">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- Znamka in preklopnik sta združena za boljši prikaz na mobilnih napravah -->
         <div class="navbar-header">
           <button
             data-target="#bs-example-navbar-collapse-1"
@@ -54,246 +58,243 @@
           </div>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse" position: relative; z-index: 9999999; style="margin-left: 250px;">
-          <ul class="nav navbar-nav" style="z-index: 9999999;">
-            <li class="dropdown">
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#"
-                ><i style="font-size: 20px" class="icon-conversation"></i>
-                <div class="noft-red">23</div></a
-              >
+        <!-- zbiranje navigacijskih povezav, obrazcev in druge vsebine za preklapljanje -->
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse"
+        position: relative; z-index: 9999999; style="margin-left: 250px;">
+        <ul class="nav navbar-nav" style="z-index: 9999999">
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"
+              ><i style="font-size: 20px" class="icon-conversation"></i>
+              <div class="noft-red">23</div></a
+            >
 
-              <ul
-                style="margin: 11px 0 0 9px; z-index: 999999;"
-                role="menu"
-                class="dropdown-menu dropdown-wrap"
-              >
-                <li>
-                  <a href="#">
-                    <img
-                      alt=""
-                      class="img-msg img-circle"
-                      src="http://api.randomuser.me/portraits/thumb/men/1.jpg"
-                    />Jhon Doe <b>Just Now</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <img
-                      alt=""
-                      class="img-msg img-circle"
-                      src="http://api.randomuser.me/portraits/thumb/women/1.jpg"
-                    />Jeniffer <b>3 Min Ago</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <img
-                      alt=""
-                      class="img-msg img-circle"
-                      src="http://api.randomuser.me/portraits/thumb/men/2.jpg"
-                    />Dave <b>2 Hours Ago</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <img
-                      alt=""
-                      class="img-msg img-circle"
-                      src="http://api.randomuser.me/portraits/thumb/men/3.jpg"
-                    /><i>Keanu</i> <b>1 Day Ago</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <img
-                      alt=""
-                      class="img-msg img-circle"
-                      src="http://api.randomuser.me/portraits/thumb/men/4.jpg"
-                    /><i>Masashi</i> <b>2 Mounth Ago</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <div>See All Messages</div>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#"
-                ><i style="font-size: 19px" class="icon-warning tooltitle"></i>
-                <div class="noft-green">5</div></a
-              >
-              <ul
-                style="margin: 12px 0 0 0"
-                role="menu"
-                class="dropdown-menu dropdown-wrap"
-              >
-                <li>
-                  <a href="#">
-                    <span
-                      style="background: #df2135"
-                      class="noft-icon maki-bus"
-                    ></span
-                    ><i>From Station</i> <b>01B</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <span
-                      style="background: #ab6db0"
-                      class="noft-icon maki-ferry"
-                    ></span
-                    ><i>Departing at</i> <b>9:00 AM</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <span
-                      style="background: #ffa200"
-                      class="noft-icon maki-aboveground-rail"
-                    ></span
-                    ><i>Delay for</i> <b>09 Min</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <span
-                      style="background: #86c440"
-                      class="noft-icon maki-airport"
-                    ></span
-                    ><i>Take of</i> <b>08:30 AM</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">
-                    <span
-                      style="background: #0db8df"
-                      class="noft-icon maki-bicycle"
-                    ></span
-                    ><i>Take of</i> <b>08:30 AM</b>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <div>See All Notification</div>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#"
-                ><i
-                  data-toggle="tooltip"
-                  data-placement="bottom"
-                  title="Help"
-                  style="font-size: 20px"
-                  class="icon-help tooltitle"
-                ></i
-              ></a>
-            </li>
+            <ul
+              style="margin: 11px 0 0 9px; z-index: 999999"
+              role="menu"
+              class="dropdown-menu dropdown-wrap"
+            >
+              <li>
+                <a href="#">
+                  <img
+                    alt=""
+                    class="img-msg img-circle"
+                    src="http://api.randomuser.me/portraits/thumb/men/1.jpg"
+                  />Jhon Doe <b>Just Now</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <img
+                    alt=""
+                    class="img-msg img-circle"
+                    src="http://api.randomuser.me/portraits/thumb/women/1.jpg"
+                  />Jeniffer <b>3 Min Ago</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <img
+                    alt=""
+                    class="img-msg img-circle"
+                    src="http://api.randomuser.me/portraits/thumb/men/2.jpg"
+                  />Dave <b>2 Hours Ago</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <img
+                    alt=""
+                    class="img-msg img-circle"
+                    src="http://api.randomuser.me/portraits/thumb/men/3.jpg"
+                  /><i>Keanu</i> <b>1 Day Ago</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <img
+                    alt=""
+                    class="img-msg img-circle"
+                    src="http://api.randomuser.me/portraits/thumb/men/4.jpg"
+                  /><i>Masashi</i> <b>2 Mounth Ago</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div>See All Messages</div>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"
+              ><i style="font-size: 19px" class="icon-warning tooltitle"></i>
+              <div class="noft-green">5</div></a
+            >
+            <ul
+              style="margin: 12px 0 0 0"
+              role="menu"
+              class="dropdown-menu dropdown-wrap"
+            >
+              <li>
+                <a href="#">
+                  <span
+                    style="background: #df2135"
+                    class="noft-icon maki-bus"
+                  ></span
+                  ><i>From Station</i> <b>01B</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <span
+                    style="background: #ab6db0"
+                    class="noft-icon maki-ferry"
+                  ></span
+                  ><i>Departing at</i> <b>9:00 AM</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <span
+                    style="background: #ffa200"
+                    class="noft-icon maki-aboveground-rail"
+                  ></span
+                  ><i>Delay for</i> <b>09 Min</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <span
+                    style="background: #86c440"
+                    class="noft-icon maki-airport"
+                  ></span
+                  ><i>Take of</i> <b>08:30 AM</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <span
+                    style="background: #0db8df"
+                    class="noft-icon maki-bicycle"
+                  ></span
+                  ><i>Take of</i> <b>08:30 AM</b>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div>See All Notification</div>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"
+              ><i
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Help"
+                style="font-size: 20px"
+                class="icon-help tooltitle"
+              ></i
+            ></a>
+          </li>
+        </ul>
+        <div
+          id="nt-title-container"
+          class="navbar-left running-text visible-lg"
+        >
+          <ul class="date-top">
+            <li class="entypo-calendar" style="margin-right: 5px"></li>
+            <li id="Date"></li>
           </ul>
-          <div
-            id="nt-title-container"
-            class="navbar-left running-text visible-lg"
-          >
-            <ul class="date-top">
-              <li class="entypo-calendar" style="margin-right: 5px"></li>
-              <li id="Date"></li>
-            </ul>
 
-            <ul id="digital-clock" class="digital">
-              <li class="entypo-clock" style="margin-right: 5px"></li>
-              <li class="hour"></li>
-              <li>:</li>
-              <li class="min"></li>
-              <li>:</li>
-              <li class="sec"></li>
-              <li class="meridiem"></li>
-            </ul>
-            <ul id="nt-title">
-              <li>
-                <i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160;
-                <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-              </li>
-              <li>
-                <i class="wi-day-lightning"></i>&#160;&#160;Yogyakarta&#160;
-                <b>85</b><i class="wi-fahrenheit"></i>&#160;; Tonight- 72 °F
-                (22.2 °C)
-              </li>
-
-              <li>
-                <i class="wi-day-lightning"></i>&#160;&#160;Sttugart&#160;
-                <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-              </li>
-
-              <li>
-                <i class="wi-day-lightning"></i>&#160;&#160;Muchen&#160;
-                <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-              </li>
-
-              <li>
-                <i class="wi-day-lightning"></i>&#160;&#160;Frankurt&#160;
-                <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-              </li>
-            </ul>
-          </div>
-
-          <ul style="margin-right: 0" class="nav navbar-nav navbar-right">
+          <ul id="digital-clock" class="digital">
+            <li class="entypo-clock" style="margin-right: 5px"></li>
+            <li class="hour"></li>
+            <li>:</li>
+            <li class="min"></li>
+            <li>:</li>
+            <li class="sec"></li>
+            <li class="meridiem"></li>
+          </ul>
+          <ul id="nt-title">
             <li>
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img
-                  alt=""
-                  class="admin-pic img-circle"
-                  src="http://api.randomuser.me/portraits/thumb/men/10.jpg"
-                />Živjo! Uporabnik <b class="caret"></b>
-              </a>
-              <ul
-                style="margin-top: 14px"
-                role="menu"
-                class="dropdown-setting dropdown-menu"
-              >
-                <li>
-                  <a href="/profil.html">
-                    <span class="entypo-user"></span>&#160;&#160;Moj Profil</a
-                  >
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="entypo-vcard"></span>&#160;&#160;Nastavitve
-                   </a
-                  >
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="entypo-lifebuoy"></span>&#160;&#160;Pomoč</a
-                  >
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="/prijava.html">
-                    <span class="entypo-logout"></span>&#160;&#160;Odjava</a
-                  >
-                </li>
-              </ul>
+              <i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160; <b>85</b
+              ><i class="wi-fahrenheit"></i>&#160;; 15km/h
+            </li>
+            <li>
+              <i class="wi-day-lightning"></i>&#160;&#160;Yogyakarta&#160;
+              <b>85</b><i class="wi-fahrenheit"></i>&#160;; Tonight- 72 °F (22.2
+              °C)
+            </li>
+
+            <li>
+              <i class="wi-day-lightning"></i>&#160;&#160;Sttugart&#160;
+              <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
+            </li>
+
+            <li>
+              <i class="wi-day-lightning"></i>&#160;&#160;Muchen&#160; <b>85</b
+              ><i class="wi-fahrenheit"></i>&#160;; 15km/h
+            </li>
+
+            <li>
+              <i class="wi-day-lightning"></i>&#160;&#160;Frankurt&#160;
+              <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
             </li>
           </ul>
         </div>
-        <!-- /.navbar-collapse -->
+
+        <ul style="margin-right: 0" class="nav navbar-nav navbar-right">
+          <li>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <img
+                alt=""
+                class="admin-pic img-circle"
+                src="http://api.randomuser.me/portraits/thumb/men/10.jpg"
+              />Živjo! Uporabnik <b class="caret"></b>
+            </a>
+            <ul
+              style="margin-top: 14px"
+              role="menu"
+              class="dropdown-setting dropdown-menu"
+            >
+              <li>
+                <a href="/profil.html">
+                  <span class="entypo-user"></span>&#160;&#160;Moj Profil</a
+                >
+              </li>
+              <li>
+                <a href="#">
+                  <span class="entypo-vcard"></span>&#160;&#160;Nastavitve
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="entypo-lifebuoy"></span>&#160;&#160;Pomoč</a
+                >
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="/prijava.html">
+                  <span class="entypo-logout"></span>&#160;&#160;Odjava</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <!-- /.container-fluid -->
     </nav>
 
-    <!-- /END OF TOP NAVBAR -->
+    <!-- /KONEC ZGORNJE NAVIGACIJSKE VRSTICE -->
 
-    <!-- SIDE MENU -->
+    <!-- STRANSKI MENI -->
     <div id="skin-select">
       <div
         id="logo"
@@ -318,7 +319,7 @@
         </h1>
       </div>
 
-      <div class="dark" style="margin-bottom: 15px;">
+      <div class="dark" style="margin-bottom: 15px">
         <form action="#">
           <span>
             <input
@@ -448,13 +449,13 @@
         </div>
       </div>
     </div>
-    <!-- END OF SIDE MENU -->
+    <!-- KONEC STRANSKEGA MENIJA -->
 
-    <!--  PAPER WRAP -->
-    <div class="wrap-fluid" style="margin-left: 250px;">
+    <!--  OVITEK IZ PAPIRJA -->
+    <div class="wrap-fluid" style="margin-left: 250px">
       <div class="container-fluid paper-wrap bevel tlbr">
-        <!-- CONTENT -->
-        <!--TITLE -->
+        <!-- VSEBINA -->
+        <!--NASLOV -->
         <div class="row">
           <div id="paper-top">
             <div class="col-sm-3">
@@ -514,9 +515,9 @@
             </div>
           </div>
         </div>
-        <!--/ TITLE -->
+        <!--/ NASLOV -->
 
-        <!-- BREADCRUMB -->
+        <!-- ZAČETEK BREADCRUMB -->
         <ul id="breadcrumb">
           <li>
             <span class="entypo-home"></span>
@@ -540,31 +541,41 @@
             </div>
           </li>
         </ul>
+        <!-- KONEC BREADCRUMBA -->
 
-        <!-- END OF BREADCRUMB -->
-        <!--  / DEVICE MANAGER -->
+        <!--  UPRAVITELJ NAPRAV -->
         <div class="content-wrap">
           <div class="profileHeadingContainer">
             <h1 class="profileHeading">Profil</h1>
-            <button class="btn btn-danger danger-profile">Izbriši profil</button>
+            <button
+              class="btn btn-danger danger-profile"
+              onclick="openDeleteModal()"
+            >
+              Izbriši profil
+            </button>
           </div>
-          <div class="row" style="margin-top: 20px">
-            <div class="col-sm-12 profileSectionContainer"s>
-              <!-- Profile Image Section -->
-               <div class="imageContainer">
+          <div class="row rowTable">
+            <div class="col-sm-12 profileSectionContainer" s>
+              <!-- Profile Image -->
+              <div class="imageContainer">
                 <div class="profile-image">
-                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Image" >
+                  <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Profile Image"
+                  />
                 </div>
                 <div class="profile-image-edit">
-                  <button class="btnProfile btn-primary" type="button">Spremeni sliko</button>
+                  <button class="btnProfile btn-primary" type="button">
+                    Spremeni sliko
+                  </button>
                 </div>
               </div>
-        
-              <!-- Profile Details Section -->
+
+              <!-- Profile Details -->
               <div class="profile-details">
                 <h2 class="user-name">Uporabnik</h2>
-              
-                <!-- Name Input -->
+
+                <!-- Input za ime -->
                 <div class="user-info">
                   <label for="name">Ime:</label>
                   <input type="text" id="userName" value="John Doe" readonly />
@@ -572,47 +583,64 @@
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-              
-                <!-- Surname Input -->
+
+                <!-- Input za priimek -->
                 <div class="user-info">
                   <label for="surname">Priimek:</label>
-                  <input type="text" id="surname" value="Doe" readonly>
+                  <input type="text" id="surname" value="Doe" readonly />
                   <span class="edit-icon" onclick="editField('surname', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-              
-                <!-- Email Input -->
+
+                <!--  Input za email -->
                 <div class="user-info">
                   <label for="email">Email:</label>
-                  <input type="email" id="email" value="john.doe@example.com" readonly>
+                  <input
+                    type="email"
+                    id="email"
+                    value="john.doe@example.com"
+                    readonly
+                  />
                   <span class="edit-icon" onclick="editField('email', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-              
-                <!-- Bio Input -->
+
+                <!-- Input za bio -->
                 <div class="user-info">
                   <label for="bio">Bio:</label>
-                  <textarea id="bio" readonly>A short description about the user can go here.</textarea>
+                  <textarea id="bio" readonly>
+A short description about the user can go here.</textarea
+                  >
                   <span class="edit-icon" onclick="editField('bio', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-              
-                <!-- Location Input -->
+
+                <!-- Input za lokacijo -->
                 <div class="user-info">
                   <label for="location">Lokacija:</label>
-                  <input type="text" id="location" value="New York, USA" readonly>
+                  <input
+                    type="text"
+                    id="location"
+                    value="New York, USA"
+                    readonly
+                  />
                   <span class="edit-icon" onclick="editField('location', this)">
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-              
-                <!-- Phone Input -->
+
+                <!-- Input za telefon -->
                 <div class="user-info">
                   <label for="phone">Telefon:</label>
-                  <input type="tel" id="phone" value="(123) 456-7890" readonly>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value="(123) 456-7890"
+                    readonly
+                  />
                   <span class="edit-icon" onclick="editField('phone', this)">
                     <i class="fa fa-edit"></i>
                   </span>
@@ -648,7 +676,9 @@
                                 Berlin</span
                               >
                               <p>
-                                <span class="entypo-gauge"></span>&nbsp;12 Km/<i>Hours</i>
+                                <span class="entypo-gauge"></span>&nbsp;12 Km/<i
+                                  >Hours</i
+                                >
                               </p>
                             </div>
                           </td>
@@ -983,14 +1013,17 @@
           </div>
         </div>
       </div>
+      <!-- Modalno okno za brisanje računa -->
+      <!-- Div za modal -->
+      <div id="deleteModalContainer"></div>
       <!-- Footer -->
       <footer>
         <div class="footer-content">
-          <p> 2025 RIS projekt.</p>
+          <p>2025 RIS projekt.</p>
         </div>
       </footer>
     </div>
-    <!--  END OF PAPER WRAP -->
+    <!--  KONEC ZAVIJANJA PAPIRJA -->
 
     <script>
       function updateDate() {
@@ -1001,59 +1034,57 @@
           month: "long",
           day: "numeric",
         };
-        var currentDate = date.toLocaleDateString("sl-SI", options); // Adjust locale as needed
+        var currentDate = date.toLocaleDateString("sl-SI", options); // Odvisno od lokacije
         $("#Date").text(currentDate);
       }
 
-      // Call the function to display date
+      // Klic funkcije za prikaz datuma
       updateDate();
-      // Update the date every minute
+      // Posodabljanje datuma vsako minuto
       setInterval(updateDate, 60000);
     </script>
 
     <script type="module" src="assets/js/data.js"></script>
 
-    <!-- END OF RIGHT SLIDER CONTENT-->
+    <!-- KONEC VSEBINE DESNEGA DRSNIKA-->
 
-    <!-- MAIN EFFECT -->
+    <!-- GLAVNI EFFEKTI -->
     <script type="text/javascript" src="assets/js/preloader.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="assets/js/load.js"></script>
     <script type="module" src="assets/js/main.js"></script>
 
-
-    <!-- GAGE -->
+    <!-- Odštevanje -->
     <script
       type="text/javascript"
       src="assets/js/countdown/jquery.countdown.js"
     ></script>
 
-
     <script type="text/javascript">
       var output, started, duration, desired;
 
-      // Constants
+      // Konstante
       duration = 5000;
       desired = "50";
 
-      // Initial setup
+      // Začetna nastavitev
       output = $("#speed");
       started = new Date().getTime();
 
-      // Animate!
+      // Animacija
       animationTimer = setInterval(function () {
-        // If the value is what we want, stop animating
-        // or if the duration has been exceeded, stop animating
+        // Če je vrednost takšna, kot jo želimo, prenehaj animirati
+        // ali če je bilo trajanje preseženo, prenehajte animirati
         if (
           output.text().trim() === desired ||
           new Date().getTime() - started > duration
         ) {
           console.log("animating");
-          // Generate a random string to use for the next animation step
+          // Generiranje naključnega niza, ki se uporabi za naslednji korak animacije
           output.text("" + Math.floor(Math.random() * 60));
         } else {
           console.log("animating");
-          // Generate a random string to use for the next animation step
+          // Generiranje naključnega niza, ki se uporabi za naslednji korak animacije
           output.text("" + Math.floor(Math.random() * 120));
         }
       }, 5000);
@@ -1068,64 +1099,74 @@
       $("#getting-started").countdown("2025/12/31", function (event) {
         var offset = event.offset;
 
-        var output = ""
-          + "<span>" + offset.minutes + "</span> "
-          + "<span>" + slPlural(offset.minutes, 'minuta', 'minuti', 'minut') + "</span> "
-          + "<span>" + offset.seconds + "</span> "
-          + "<span>" + slPlural(offset.seconds, 'sekunda', 'sekundi', 'sekund') + "</span>";
+        var output =
+          "" +
+          "<span>" +
+          offset.minutes +
+          "</span> " +
+          "<span>" +
+          slPlural(offset.minutes, "minuta", "minuti", "minut") +
+          "</span> " +
+          "<span>" +
+          offset.seconds +
+          "</span> " +
+          "<span>" +
+          slPlural(offset.seconds, "sekunda", "sekundi", "sekund") +
+          "</span>";
 
         $(this).html(output);
       });
     </script>
 
-    <!-- LEAFLET MAP -->
-    <script type="module">
-      import { parkirnaMesta } from './assets/js/data.js';
-    // Initialize the map and set the view to Ljubljana's coordinates
-    var map = L.map("leafletMap").setView([46.056946, 14.505751], 13);
+    <script>
+      function editField(fieldId, triggerElement) {
+        const field = document.getElementById(fieldId);
+        const container = triggerElement.parentElement;
 
-    // Soft colored tile layer, close to Google Maps
-    L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-      {
-        attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+        if (field.readOnly) {
+          // Switch to edit mode
+          field.readOnly = false;
+          field.classList.add("editing");
+
+          // Create check icon to save
+          const checkIcon = document.createElement("span");
+          checkIcon.className = "save-icon";
+          checkIcon.innerHTML = '<i class="fa fa-check"></i>';
+          checkIcon.onclick = function () {
+            field.readOnly = true;
+            field.classList.remove("editing");
+
+            // Restore the edit icon
+            container.replaceChild(triggerElement, checkIcon);
+          };
+
+          container.replaceChild(checkIcon, triggerElement);
+        }
       }
-    ).addTo(map);
-
-    parkirnaMesta.forEach(function(parkirisce) {
-      L.marker([parkirisce.latitude, parkirisce.longitude])
-        .addTo(map)
-        .bindPopup(parkirisce.ime);
-    });
-      console.log(parkirnaMesta); // Accessing parkirnaMesta after the file has been loaded
     </script>
+    <script>
+      function openDeleteModal() {
+        fetch("modals/izbrisiRacunModal.html")
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById("deleteModalContainer").innerHTML = html;
 
-<script>
-  function editField(fieldId, triggerElement) {
-    const field = document.getElementById(fieldId);
-    const container = triggerElement.parentElement;
+            const modal = document.querySelector(
+              "#deleteModalContainer .modal"
+            );
+            if (modal) {
+              modal.style.display = "block";
+            }
 
-    if (field.readOnly) {
-      // Switch to edit mode
-      field.readOnly = false;
-      field.classList.add("editing");
-
-      // Create check icon to save
-      const checkIcon = document.createElement("span");
-      checkIcon.className = "save-icon";
-      checkIcon.innerHTML = '<i class="fa fa-check"></i>';
-      checkIcon.onclick = function () {
-        field.readOnly = true;
-        field.classList.remove("editing");
-
-        // Restore the edit icon
-        container.replaceChild(triggerElement, checkIcon);
-      };
-
-      container.replaceChild(checkIcon, triggerElement);
-    }
-  }
-</script>
-
+            // Redefine closeModal so it's available after insertion
+            window.closeModal = function () {
+              modal.style.display = "none";
+            };
+          })
+          .catch((err) =>
+            console.error("Ni uspelo naložiti modalnega okna:", err)
+          );
+      }
+    </script>
   </body>
 </html>

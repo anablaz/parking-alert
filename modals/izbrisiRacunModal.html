@@ -1,0 +1,23 @@
+<div class="modal" id="deleteModal" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Izbriši račun</h5>
+          <button type="button" class="close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            Ali želite izbrisati svoj račun?
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal()">Prekliči</button>
+          <button class="btn btn-danger">Izbriši</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function closeModal() {
+      document.getElementById('deleteModal').style.display = 'none';
+    }
+  </script>

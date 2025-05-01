@@ -85,6 +85,10 @@ a:hover {
   margin-left: 0 !important;
 }
 
+.rowTable{
+  margin-top: 20px;
+}
+
 .navbar-toggle {
   position: relative;
   float: right;
@@ -380,6 +384,7 @@ a:hover {
   color: #fff !important;
   background-color: #e86161 !important;
   border-color: #e86161 !important;
+  border-color: none !important;
 }
 
 .btn-default:hover,
