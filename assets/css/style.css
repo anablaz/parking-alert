@@ -2169,3 +2169,27 @@ small.pull-right {
   top: 0;
   width: 74px;
 }
+
+footer {
+  background-color: #3333333b;
+  color: #fff;
+  padding: 50px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-content p {
+  margin: 0;
+}
