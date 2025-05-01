@@ -181,7 +181,9 @@
 
     loadResource(resource, () => {
       resource.state = STATE.LOADED;
-      callback();
+      if (typeof callback === "function") {
+        callback();
+      }
       each(readyCallbacks[resource.name], done);
       if (domReady && allLoaded()) {
         each(readyCallbacks.ALL, done);
