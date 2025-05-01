@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (username === "" || password === "") {
         showToast("Vsa polja so obvezna.", "error");
       } else {
-        // Simulate successful registration
-        // You could push this to some array if needed
+        // Simulacija uspešne registracije
+        // Po potrebi lahko to prenesete v kakšno polje
         localStorage.setItem("registrationSuccess", "true");
         showToast("Registracija uspešna!", "success");
   
@@ -90,11 +90,11 @@ function editField(fieldId, triggerElement) {
   const container = triggerElement.parentElement;
 
   if (field.readOnly) {
-    // Switch to edit mode
+    // Preklop na način urejanja
     field.readOnly = false;
     field.classList.add("editing");
 
-    // Create check icon to save
+    // Ustvari ikono za preverjanje, da shranimo
     const checkIcon = document.createElement("span");
     checkIcon.className = "save-icon";
     checkIcon.innerHTML = '<i class="fa fa-check"></i>';
@@ -102,7 +102,7 @@ function editField(fieldId, triggerElement) {
       field.readOnly = true;
       field.classList.remove("editing");
 
-      // Restore the edit icon
+      // Obnovitev ikone za urejanje
       container.replaceChild(triggerElement, checkIcon);
     };
 
@@ -132,7 +132,7 @@ function openDeleteModal() {
         modal.style.display = "block";
       }
 
-      // Redefine closeModal so it's available after insertion
+      // Redefiniraj closeModal, da bo na voljo po vstavitvi
       window.closeModal = function () {
         modal.style.display = "none";
       };
@@ -142,6 +142,20 @@ function openDeleteModal() {
 
 function closeModal() {
   document.getElementById("deleteModal").style.display = "none";
+}
+
+function deleteAccount() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (user) {
+    // Simulacija brisanja računa
+    localStorage.removeItem("loggedInUser");
+    showToast("Račun uspešno izbrisan.", "success");
+    setTimeout(() => {
+      window.location.href = "/front-end/prijava.html";
+    }, 1500);
+  } else {
+    showToast("Napaka pri brisanju računa.", "error");
+  }
 }
 
 // Poročanje o opaženih redarjih
