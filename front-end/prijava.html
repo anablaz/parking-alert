@@ -2,22 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Ustvari račun - Parking Alert V 1.1</title>
+    <title>Prijava - Parking Alert V 1.1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
 
     <!-- Site icon -->
 
-    <link rel="icon" href="/assets/img/parking-alert-logo.png" type="image/png" />
+    <link rel="icon" href="/front-end/assets/img/parking-alert-logo.png" type="image/png" />
 
     <!-- Styles -->
-    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/front-end/assets/js/jquery.min.js"></script>
 
     <!--  <link rel="stylesheet" href="assets/css/style.css"> -->
-    <link rel="stylesheet" href="/assets/css/loader-style.css" />
-    <link rel="stylesheet" href="/assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="/assets/css/signin.css" />
+    <link rel="stylesheet" href="/front-end/assets/css/loader-style.css" />
+    <link rel="stylesheet" href="/front-end/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/front-end/assets/css/signin.css" />
 
   </head>
 
@@ -44,6 +44,9 @@
             <div class="account-box">
               <form role="form">
                 <div class="form-group">
+                  <a href="#" class="pull-right label-forgot"
+                    >Ste pozabili e-pošto?</a
+                  >
                   <label for="inputUsernameEmail"
                     >Uporabniško ime ali e-pošta</label
                   >
@@ -54,6 +57,9 @@
                   />
                 </div>
                 <div class="form-group">
+                  <a href="#" class="pull-right label-forgot"
+                    >Ste pozabili geslo?</a
+                  >
                   <label for="inputPassword">Geslo</label>
                   <input
                     type="password"
@@ -65,20 +71,20 @@
                   <label> <input type="checkbox" />Zapomni me</label>
                 </div>
                 <button class="btn btn btn-primary pull-right" type="submit">
-                  Ustvari račun
+                  Prijava
                 </button>
               </form>
-              <a class="forgotLnk" href="index.html"></a>
+              <a class="forgotLnk" href="/front-end/index.html"></a>
               <div class="or-box">
                 <div style="text-align: center">
                   <span class="login-with"
-                    >Prijava</span
+                    >Prijava ali <b>Ustvari račun</b></span
                   >
                 </div>
 
                 <div class="row">
                   <div class="col-md-6 row-block">
-                    <a href="index.html" class="btn btn-facebook btn-block">
+                    <a href="/front-end/index.html" class="btn btn-facebook btn-block">
                       <span class="entypo-facebook space-icon"></span
                       >Facebook</a
                     >
@@ -106,12 +112,9 @@
               <hr />
               <div class="row-block">
                 <div class="row">
-                  <div class="col-md-12 row-block" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                    <label for="imateZeRacun"
-                    >Ali imate že račun?</label
-                  >
-                    <a href="/prijava/prijava.html" class="btn btn-primary btn-block"
-                      >Prijavi se</a
+                  <div class="col-md-12 row-block">
+                    <a href="/front-end/ustvariRacun.html" class="btn btn-primary btn-block"
+                      >Ustvari novi račun</a
                     >
                   </div>
                 </div>
@@ -125,12 +128,11 @@
         <h6 style="color: #fff">Parking Alert v 1.1. RIS projekt</h6>
       </div>
     </div>
-    <div id="test1" class="gmap3"></div>
 
     <!--  END OF PAPER WRAP -->
 
     <!-- MAIN EFFECT -->
-    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/front-end/assets/js/bootstrap.js"></script>
 
   </body>
 </html>
