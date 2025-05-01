@@ -40,7 +40,7 @@ Aplikacija ponuja naslednje glavne funkcionalnosti:
 
 ## Zahteve
 
-- Mobilna aplikacija je zasnovana za **HTML, CSS, JS** za **spletne in mobilne** brskalnike.
+- Aplikacija je zasnovana za **HTML, CSS, JS** za **spletne in mobilne** brskalnike.
 - Potrebna je **GPS naprava** za natančno določanje lokacije.
 
 ## Pomoč in podpora
