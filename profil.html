@@ -261,14 +261,14 @@
                 class="dropdown-setting dropdown-menu"
               >
                 <li>
-                  <a href="#">
+                  <a href="/profil.html">
                     <span class="entypo-user"></span>&#160;&#160;Moj Profil</a
                   >
                 </li>
                 <li>
                   <a href="#">
-                    <span class="entypo-vcard"></span>&#160;&#160;Nastavitev
-                    računa</a
+                    <span class="entypo-vcard"></span>&#160;&#160;Nastavitve
+                   </a
                   >
                 </li>
                 <li>
@@ -278,7 +278,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="prijava.html">
+                  <a href="/prijava.html">
                     <span class="entypo-logout"></span>&#160;&#160;Odjava</a
                   >
                 </li>
@@ -354,7 +354,7 @@
               <li>
                 <a
                   class="tooltip-tip ajax-load"
-                  href="index.html"
+                  href="/index.html"
                   title="Dashboard"
                 >
                   <i class="icon-window"></i>
@@ -363,7 +363,7 @@
               </li>
 
               <li>
-                <a class="tooltip-tip" href="prijava.html" title="login">
+                <a class="tooltip-tip" href="/prijava.html" title="login">
                   <i class="icon-user"></i>
                   <span>Odjava</span>
                 </a>
@@ -1109,19 +1109,19 @@
       field.readOnly = false;
       field.classList.add("editing");
 
-      // Replace icon with Save button
-      const saveBtn = document.createElement("button");
-      saveBtn.textContent = "Save";
-      saveBtn.className = "save-btn";
-      saveBtn.onclick = function () {
+      // Create check icon to save
+      const checkIcon = document.createElement("span");
+      checkIcon.className = "save-icon";
+      checkIcon.innerHTML = '<i class="fa fa-check"></i>';
+      checkIcon.onclick = function () {
         field.readOnly = true;
         field.classList.remove("editing");
 
         // Restore the edit icon
-        container.replaceChild(triggerElement, saveBtn);
+        container.replaceChild(triggerElement, checkIcon);
       };
 
-      container.replaceChild(saveBtn, triggerElement);
+      container.replaceChild(checkIcon, triggerElement);
     }
   }
 </script>
