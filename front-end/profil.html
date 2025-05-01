@@ -29,6 +29,12 @@
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Preusmeri na prijava če ni logiran -->
+    <script src="/front-end/assets/js/authUser.js"></script>
+
+    <!-- Glavne razrede in funkcije -->
+    <script src="/main-scripts/mainScript.js"></script>
   </head>
 
   <body>
@@ -282,7 +288,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="/front-end/prijava.html">
+                <a href="#" onclick="logout()">
                   <span class="entypo-logout"></span>&#160;&#160;Odjava</a
                 >
               </li>
@@ -364,7 +370,11 @@
               </li>
 
               <li>
-                <a class="tooltip-tip" href="/front-end/prijava.html" title="login">
+                <a
+                  class="tooltip-tip"
+                  href="/front-end/prijava.html"
+                  title="login"
+                >
                   <i class="icon-user"></i>
                   <span>Odjava</span>
                 </a>
@@ -523,10 +533,15 @@
             <span class="entypo-home"></span>
           </li>
           <li><i class="fa fa-lg fa-angle-right"></i></li>
-          <li><a href="#" title="Sample page 1">Domov</a></li>
+          <li>
+            <a href="/front-end/index.html" title="Nadzorna plošča">Domov</a>
+          </li>
           <li><i class="fa fa-lg fa-angle-right"></i></li>
           <li>
-            <a href="#" style="font-weight: bold" title="Sample page 1"
+            <a
+              href="/front-end/profil.html"
+              style="font-weight: bold"
+              title="Profil"
               >Profil</a
             >
           </li>
@@ -1025,26 +1040,11 @@ A short description about the user can go here.</textarea
     </div>
     <!--  KONEC ZAVIJANJA PAPIRJA -->
 
-    <script>
-      function updateDate() {
-        var date = new Date();
-        var options = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        var currentDate = date.toLocaleDateString("sl-SI", options); // Odvisno od lokacije
-        $("#Date").text(currentDate);
-      }
+    <!--  Posodobi datum -->
+    <script src="/front-end/assets/js/countdown/updateDate.js"></script>
 
-      // Klic funkcije za prikaz datuma
-      updateDate();
-      // Posodabljanje datuma vsako minuto
-      setInterval(updateDate, 60000);
-    </script>
-
-    <script type="module" src="assets/js/data.js"></script>
+    <!--  Dummy podatki o parkirišč -->
+    <script type="module" src="assets/js/dummyData/parkingdata.js"></script>
 
     <!-- KONEC VSEBINE DESNEGA DRSNIKA-->
 
@@ -1059,114 +1059,9 @@ A short description about the user can go here.</textarea
       type="text/javascript"
       src="assets/js/countdown/jquery.countdown.js"
     ></script>
-
-    <script type="text/javascript">
-      var output, started, duration, desired;
-
-      // Konstante
-      duration = 5000;
-      desired = "50";
-
-      // Začetna nastavitev
-      output = $("#speed");
-      started = new Date().getTime();
-
-      // Animacija
-      animationTimer = setInterval(function () {
-        // Če je vrednost takšna, kot jo želimo, prenehaj animirati
-        // ali če je bilo trajanje preseženo, prenehajte animirati
-        if (
-          output.text().trim() === desired ||
-          new Date().getTime() - started > duration
-        ) {
-          console.log("animating");
-          // Generiranje naključnega niza, ki se uporabi za naslednji korak animacije
-          output.text("" + Math.floor(Math.random() * 60));
-        } else {
-          console.log("animating");
-          // Generiranje naključnega niza, ki se uporabi za naslednji korak animacije
-          output.text("" + Math.floor(Math.random() * 120));
-        }
-      }, 5000);
-    </script>
-    <script type="text/javascript">
-      function slPlural(value, one, twoToFour, other) {
-        if (value === 1) return one;
-        if (value >= 2 && value <= 4) return twoToFour;
-        return other;
-      }
-
-      $("#getting-started").countdown("2025/12/31", function (event) {
-        var offset = event.offset;
-
-        var output =
-          "" +
-          "<span>" +
-          offset.minutes +
-          "</span> " +
-          "<span>" +
-          slPlural(offset.minutes, "minuta", "minuti", "minut") +
-          "</span> " +
-          "<span>" +
-          offset.seconds +
-          "</span> " +
-          "<span>" +
-          slPlural(offset.seconds, "sekunda", "sekundi", "sekund") +
-          "</span>";
-
-        $(this).html(output);
-      });
-    </script>
-
-    <script>
-      function editField(fieldId, triggerElement) {
-        const field = document.getElementById(fieldId);
-        const container = triggerElement.parentElement;
-
-        if (field.readOnly) {
-          // Switch to edit mode
-          field.readOnly = false;
-          field.classList.add("editing");
-
-          // Create check icon to save
-          const checkIcon = document.createElement("span");
-          checkIcon.className = "save-icon";
-          checkIcon.innerHTML = '<i class="fa fa-check"></i>';
-          checkIcon.onclick = function () {
-            field.readOnly = true;
-            field.classList.remove("editing");
-
-            // Restore the edit icon
-            container.replaceChild(triggerElement, checkIcon);
-          };
-
-          container.replaceChild(checkIcon, triggerElement);
-        }
-      }
-    </script>
-    <script>
-      function openDeleteModal() {
-        fetch("modals/izbrisiRacunModal.html")
-          .then((response) => response.text())
-          .then((html) => {
-            document.getElementById("deleteModalContainer").innerHTML = html;
-
-            const modal = document.querySelector(
-              "#deleteModalContainer .modal"
-            );
-            if (modal) {
-              modal.style.display = "block";
-            }
-
-            // Redefine closeModal so it's available after insertion
-            window.closeModal = function () {
-              modal.style.display = "none";
-            };
-          })
-          .catch((err) =>
-            console.error("Ni uspelo naložiti modalnega okna:", err)
-          );
-      }
-    </script>
+    <script
+      type="text/javascript"
+      src="/front-end/assets/js/countdown/countdown.js"
+    ></script>
   </body>
 </html>

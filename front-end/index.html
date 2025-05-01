@@ -28,6 +28,12 @@
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Preusmeri na prijava če ni logiran -->
+    <script src="/front-end/assets/js/authUser.js"></script>
+
+    <!-- Glavne razrede in funkcije -->
+    <script src="/main-scripts/mainScript.js"></script>
   </head>
 
   <body>
@@ -363,7 +369,11 @@
               </li>
 
               <li>
-                <a class="tooltip-tip" href="/front-end/prijava.html" title="login">
+                <a
+                  class="tooltip-tip"
+                  href="/front-end/prijava.html"
+                  title="login"
+                >
                   <i class="icon-user"></i>
                   <span>Odjava</span>
                 </a>
@@ -522,10 +532,15 @@
             <span class="entypo-home"></span>
           </li>
           <li><i class="fa fa-lg fa-angle-right"></i></li>
-          <li><a href="#" title="Sample page 1">Domov</a></li>
+          <li>
+            <a href="/front-end/index.html" title="Nadzorna plošča">Domov</a>
+          </li>
           <li><i class="fa fa-lg fa-angle-right"></i></li>
           <li>
-            <a href="#" style="font-weight: bold" title="Sample page 1"
+            <a
+              href="/front-end/index.html"
+              style="font-weight: bold"
+              title="Nadzorna plošča"
               >Nadzorna plošča</a
             >
           </li>
@@ -586,342 +601,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #65c3df">
-                                <span class="maki-bus"></span>&nbsp;&nbsp;Trans
-                                Berlin</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;12 Km/<i
-                                  >Hours</i
-                                >
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/14.jpg"
-                            />
-                            <h3>Mark Zukenbeirg</h3>
-                            <br />
-                            <p>Driver</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="basic">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown"></div>
-                                  <div class="number-pb-num">0</div>
-                                </div>
-                              </article>
-                            </section>
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">Muchen</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #45b6b0">
-                                <span class="fontawesome-plane"></span
-                                >&nbsp;&nbsp;Fly Airlines</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;600
-                                Km/<i>Hours</i>
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/38.jpg"
-                            />
-                            <h3>Marko Freytag</h3>
-                            <br />
-                            <p>Pilot</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="percentage">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown dream"></div>
-                                  <div class="number-pb-num">0%</div>
-                                </div>
-                              </article>
-                            </section>
-
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">London</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #ff6b6b">
-                                <span class="maki-aboveground-rail"></span
-                                >&nbsp;&nbsp;Fazttrain</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;40 Km/<i
-                                  >Hours</i
-                                >
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/39.jpg"
-                            />
-                            <h3>Dieter Gruenewald</h3>
-                            <br />
-                            <p>machinist</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="step">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown sun"></div>
-                                  <div class="number-pb-num">0/0</div>
-                                </div>
-                              </article>
-                            </section>
-
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">Dortmund</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #65c3df">
-                                <span class="maki-bus"></span>&nbsp;&nbsp;Trans
-                                Berlin</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;12 Km/<i
-                                  >Hours</i
-                                >
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/14.jpg"
-                            />
-                            <h3>Mark Zukenbeirg</h3>
-                            <br />
-                            <p>Driver</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="basic">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown"></div>
-                                  <div class="number-pb-num">0</div>
-                                </div>
-                              </article>
-                            </section>
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">Muchen</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #45b6b0">
-                                <span class="fontawesome-plane"></span
-                                >&nbsp;&nbsp;Fly Airlines</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;600
-                                Km/<i>Hours</i>
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/38.jpg"
-                            />
-                            <h3>Marko Freytag</h3>
-                            <br />
-                            <p>Pilot</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="percentage">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown dream"></div>
-                                  <div class="number-pb-num">0%</div>
-                                </div>
-                              </article>
-                            </section>
-
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">London</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #ff6b6b">
-                                <span class="maki-aboveground-rail"></span
-                                >&nbsp;&nbsp;Fazttrain</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;40 Km/<i
-                                  >Hours</i
-                                >
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/39.jpg"
-                            />
-                            <h3>Dieter Gruenewald</h3>
-                            <br />
-                            <p>machinist</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="step">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown sun"></div>
-                                  <div class="number-pb-num">0/0</div>
-                                </div>
-                              </article>
-                            </section>
-
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">Dortmund</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #65c3df">
-                                <span class="maki-bus"></span>&nbsp;&nbsp;Trans
-                                Berlin</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;12 Km/<i
-                                  >Hours</i
-                                >
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/14.jpg"
-                            />
-                            <h3>Mark Zukenbeirg</h3>
-                            <br />
-                            <p>Driver</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="basic">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown"></div>
-                                  <div class="number-pb-num">0</div>
-                                </div>
-                              </article>
-                            </section>
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">Muchen</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #45b6b0">
-                                <span class="fontawesome-plane"></span
-                                >&nbsp;&nbsp;Fly Airlines</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;600
-                                Km/<i>Hours</i>
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/38.jpg"
-                            />
-                            <h3>Marko Freytag</h3>
-                            <br />
-                            <p>Pilot</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="percentage">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown dream"></div>
-                                  <div class="number-pb-num">0%</div>
-                                </div>
-                              </article>
-                            </section>
-
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">London</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="armada-devider">
-                            <div class="armada">
-                              <span style="background: #ff6b6b">
-                                <span class="maki-aboveground-rail"></span
-                                >&nbsp;&nbsp;Fazttrain</span
-                              >
-                              <p>
-                                <span class="entypo-gauge"></span>&nbsp;40 Km/<i
-                                  >Hours</i
-                                >
-                              </p>
-                            </div>
-                          </td>
-                          <td class="driver-devider">
-                            <img
-                              class="armada-pic img-circle"
-                              alt=""
-                              src="http://api.randomuser.me/portraits/thumb/men/39.jpg"
-                            />
-                            <h3>Dieter Gruenewald</h3>
-                            <br />
-                            <p>machinist</p>
-                          </td>
-                          <td class="progress-devider">
-                            <section id="step">
-                              <article>
-                                <div class="number-pb">
-                                  <div class="number-pb-shown sun"></div>
-                                  <div class="number-pb-num">0/0</div>
-                                </div>
-                              </article>
-                            </section>
-
-                            <span class="label pull-left">Berlin</span>
-                            <span class="label pull-right">Dortmund</span>
-                          </td>
-                        </tr>
+                        <!-- Tukaj se izpolnijo dinamične vrstice. -->
                       </tbody>
                     </table>
                   </div>
@@ -940,28 +620,11 @@
     </div>
     <!--  KONEC ZAVIJANJA PAPIRJA -->
 
-    <script>
-      function updateDate() {
-        var date = new Date();
-        var options = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        var currentDate = date.toLocaleDateString("sl-SI", options); // Odvisno od lokacije
-        $("#Date").text(currentDate);
-      }
+    <!--  Posodobi datum -->
+    <script src="/front-end/assets/js/countdown/updateDate.js"></script>
 
-      // Pokliči funkcijo za prikaz datuma
-      updateDate();
-      // Posodabljanje datuma vsako minuto
-      setInterval(updateDate, 60000);
-    </script>
-
-    <script type="module" src="assets/js/data.js"></script>
-
-    <!-- KONEC VSEBINE DESNEGA DRSNIKA-->
+    <!--  Dummy podatki o parkirišč -->
+    <script type="module" src="assets/js/dummyData/parkingdata.js"></script>
 
     <!-- GLAVNI EFFECT -->
     <script type="text/javascript" src="assets/js/preloader.js"></script>
@@ -969,90 +632,24 @@
     <script type="text/javascript" src="assets/js/load.js"></script>
     <script type="module" src="assets/js/main.js"></script>
 
-    <!-- ODŠTEVANJE -->
+    <!-- Odštevanje -->
     <script
       type="text/javascript"
       src="assets/js/countdown/jquery.countdown.js"
     ></script>
-
-    <script type="text/javascript">
-      var output, started, duration, desired;
-
-      // Konstante
-      duration = 5000;
-      desired = "50";
-
-      // Začetna nastavitev
-      output = $("#speed");
-      started = new Date().getTime();
-
-      // Animacija
-      animationTimer = setInterval(function () {
-        // Če je vrednost takšna, kot jo želimo, prenehaj animirati
-        // ali če je bilo trajanje preseženo, prenehajte animirati
-        if (
-          output.text().trim() === desired ||
-          new Date().getTime() - started > duration
-        ) {
-          console.log("animating");
-          // Generiranje naključnega niza, ki se uporabi za naslednji korak animacije
-          output.text("" + Math.floor(Math.random() * 60));
-        } else {
-          console.log("animating");
-          // Generiranje naključnega niza, ki se uporabi za naslednji korak animacije
-          output.text("" + Math.floor(Math.random() * 120));
-        }
-      }, 5000);
-    </script>
-    <script type="text/javascript">
-      function slPlural(value, one, twoToFour, other) {
-        if (value === 1) return one;
-        if (value >= 2 && value <= 4) return twoToFour;
-        return other;
-      }
-
-      $("#getting-started").countdown("2025/12/31", function (event) {
-        var offset = event.offset;
-
-        var output =
-          "" +
-          "<span>" +
-          offset.minutes +
-          "</span> " +
-          "<span>" +
-          slPlural(offset.minutes, "minuta", "minuti", "minut") +
-          "</span> " +
-          "<span>" +
-          offset.seconds +
-          "</span> " +
-          "<span>" +
-          slPlural(offset.seconds, "sekunda", "sekundi", "sekund") +
-          "</span>";
-
-        $(this).html(output);
-      });
-    </script>
+    <script
+      type="text/javascript"
+      src="/front-end/assets/js/countdown/countdown.js"
+    ></script>
 
     <!-- LEAFLET MAP -->
-    <script type="module">
-      import { parkirnaMesta } from "./assets/js/data.js";
-      // Inicializiraj zemljevid in nastavite pogled na koordinate Ljubljane
-      var map = L.map("leafletMap").setView([46.056946, 14.505751], 13);
+    <script
+      type="module"
+      src="/front-end/assets/js/leafletMap/leafletMap.js"
+    ></script>
 
-      // Mehko obarvan sloj ploščic, ki je podoben Googlovim Zemljevidom
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-        {
-          attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
-        }
-      ).addTo(map);
-
-      parkirnaMesta.forEach(function (parkirisce) {
-        L.marker([parkirisce.latitude, parkirisce.longitude])
-          .addTo(map)
-          .bindPopup(parkirisce.ime);
-      });
-      console.log(parkirnaMesta); // Dostop do parkirnaMesta po nalaganju datoteke
-    </script>
+    <!-- Uporabniki -->
+    <script src="/front-end/assets/js/dummyData/usersData.js"></script>
+    <script src="/front-end/assets/js/readData/readUsersData.js"></script>
   </body>
 </html>

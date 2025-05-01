@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Preusmeritev...</title>
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+      window.location.replace("/front-end/index.html");
+    } else {
+      window.location.replace("/front-end/prijava.html");
+    }
+  </script>
+</head>
+<body>
+  <p>Preusmerjam...</p>
+</body>
+</html>
