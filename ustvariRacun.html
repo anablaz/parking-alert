@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Prijava - Parking Alert V 1.1</title>
+    <title>Ustvari račun - Parking Alert V 1.1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -50,9 +50,6 @@
             <div class="account-box">
               <form role="form">
                 <div class="form-group">
-                  <a href="#" class="pull-right label-forgot"
-                    >Ste pozabili e-pošto?</a
-                  >
                   <label for="inputUsernameEmail"
                     >Uporabniško ime ali e-pošta</label
                   >
@@ -63,9 +60,6 @@
                   />
                 </div>
                 <div class="form-group">
-                  <a href="#" class="pull-right label-forgot"
-                    >Ste pozabili geslo?</a
-                  >
                   <label for="inputPassword">Geslo</label>
                   <input
                     type="password"
@@ -77,14 +71,14 @@
                   <label> <input type="checkbox" />Zapomni me</label>
                 </div>
                 <button class="btn btn btn-primary pull-right" type="submit">
-                  Prijava
+                  Ustvari račun
                 </button>
               </form>
               <a class="forgotLnk" href="index.html"></a>
               <div class="or-box">
                 <div style="text-align: center">
                   <span class="login-with"
-                    >Prijava ali <b>Ustvari račun</b></span
+                    >Prijava</span
                   >
                 </div>
 
@@ -118,9 +112,12 @@
               <hr />
               <div class="row-block">
                 <div class="row">
-                  <div class="col-md-12 row-block">
-                    <a href="ustvariRacun.html" class="btn btn-primary btn-block"
-                      >Ustvari novi račun</a
+                  <div class="col-md-12 row-block" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <label for="imateZeRacun"
+                    >Ali imate že račun?</label
+                  >
+                    <a href="prijava.html" class="btn btn-primary btn-block"
+                      >Prijavi se</a
                     >
                   </div>
                 </div>
@@ -134,6 +131,7 @@
         <h6 style="color: #fff">Parking Alert v 1.1. FRI projekt</h6>
       </div>
     </div>
+    <div id="test1" class="gmap3"></div>
 
     <!--  END OF PAPER WRAP -->
 
