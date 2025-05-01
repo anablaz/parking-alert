@@ -1,4 +1,4 @@
-//NEWS STICKER
+//NEWS TICKER
 head.js("assets/js/newsticker/jquery.newsTicker.js", function() {
 
     var nt_title = $('#nt-title').newsTicker({
@@ -36,37 +36,6 @@ head.js("assets/js/search/jquery.quicksearch.js", function() {
    
 
 });
-//-------------------------------------------------------------
-
-//NICE SCROLL
-
-head.js("assets/js/nano/jquery.nanoscroller.js", function() {
-
-    $(".nano").nanoScroller({
-        //stop: true 
-        scroll: 'top',
-        scrollTop: 0,
-        sliderMinHeight: 40,
-        preventPageScrolling: true
-        //alwaysVisible: false
-
-    });
-
-});
-//------------------------------------------------------------- 
-//PAGE LOADER
-// Define paceOptions globally before loading pace.js
-var paceOptions = {
-    ajax: false,
-    document: false,
-    eventLag: false,
-    elements: {
-        selectors: ['.my-page']
-    }
-};
-
-// Now load pace.js
-head.js("assets/js/pace/pace.js");
 
 //------------------------------------------------------------- 
 
