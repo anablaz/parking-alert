@@ -217,6 +217,17 @@ input.editing {
   background-color: #218838;
 }
 
+.profileHeadingContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.danger-profile{
+    width: 150px !important;
+}
+
 /* Responsive Styling */
 @media (max-width: 768px) {
   .profileSectionContainer {
