@@ -1997,8 +1997,8 @@ footer a:hover {
   .navbar-nav .open .dropdown-menu {
     position: static;
     float: none;
-    width: auto;
-    margin-top: 0;
+    width: 100% !important;
+    margin-top: 5px !important;
     background-color: transparent;
     border: 0;
     box-shadow: none;
