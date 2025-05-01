@@ -256,3 +256,13 @@ body {
     color: #00ACED;
     cursor: pointer;
 }
+
+@media (max-width: 767px) {
+    .btn-facebook {
+        margin-bottom: 10px;
+    }
+    
+    .btn-google {
+        margin-bottom: 10px;
+    }
+}
