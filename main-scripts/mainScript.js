@@ -187,6 +187,12 @@ function openDeleteModal() {
         modal.style.display = "block";
       }
 
+      // Add event listener for the delete button inside the modal
+      const deleteButton = document.querySelector("#deleteButton");
+      if (deleteButton) {
+        deleteButton.addEventListener("click", () => deleteAccount());
+      }
+
       // Redefiniraj closeModal, da bo na voljo po vstavitvi
       window.closeModal = function () {
         modal.style.display = "none";
@@ -195,19 +201,14 @@ function openDeleteModal() {
     .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
 }
 
-function closeModal() {
-  document.getElementById("deleteModal").style.display = "none";
-}
-
 function deleteAccount() {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
   if (user) {
-    // Simulacija brisanja računa
+    // Ustvari primerek ZMStudent
+    const loggedInUser = new ZMStudent(user);
     localStorage.removeItem("loggedInUser");
-    showToast("Račun uspešno izbrisan.", "success");
-    setTimeout(() => {
-      window.location.href = "/front-end/prijava.html";
-    }, 1500);
+    // Pokliči metodo izbrisiRacun, da izbrišete račun
+    loggedInUser.izbrisiProfil();
   } else {
     showToast("Napaka pri brisanju računa.", "error");
   }

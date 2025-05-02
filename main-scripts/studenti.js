@@ -81,8 +81,14 @@ class ZMStudent {
   }
 
   izbrisiProfil() {
-    console.log(`Profil za ${this.ime} ${this.priimek} je izbrisan.`);
+    console.log(`Račun za ${this.ime} ${this.priimek} je izbrisan.`);
     localStorage.removeItem("loggedInUser");
+    showToast("Račun uspešno izbrisan.", "success");
+
+    // Redirect to the login page after deletion
+    setTimeout(() => {
+      window.location.href = "/front-end/prijava.html";
+    }, 1500);
   }
 
   prijaviRedar(lokacijaRedar, lokacija) {
