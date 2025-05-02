@@ -10,6 +10,8 @@ class ZMStudent {
     this.phone = userData.phone;
     this.role = userData.role;
     this.image = userData.image;
+
+    console.log("User data passed to constructor:", userData);
   }
 
   registracija() {
@@ -47,8 +49,11 @@ class ZMStudent {
   }
 
   odjava() {
-    const message = `${this.ime} ${this.priimek} se je odjavil.`;
-    showToast(message, "success"); // Prikaže toast
+    // Log 'this' to make sure it's referring to the correct instance
+    console.log("Current instance of ZMStudent:", this);
+
+    const message = `Uporabik se je uspešno odjavil.`;
+    showToast(message, "success");
     localStorage.removeItem("loggedInUser");
   }
 

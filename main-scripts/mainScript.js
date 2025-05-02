@@ -61,15 +61,26 @@ document.addEventListener("DOMContentLoaded", function () {
 // Uporabnik se lahko odjavi iz aplikacije
 function logout() {
   const userData = JSON.parse(localStorage.getItem("loggedInUser"));
-  if (userData) {
-    const uporabnik = new ZMStudent(userData);
-    uporabnik.odjava(); // Toast in brisanje sta že tukaj
-  }
+  console.log("User data retrieved from localStorage:", userData);
 
-  // Preusmeritev po krajšem zamiku
-  setTimeout(() => {
-    window.location.href = "/front-end/prijava.html";
-  }, 1500);
+  // Dodaj to vrstico, da preveri, kaj je v userData
+  console.log(userData); // Debugging line
+
+  if (userData) {
+    // Z ustvarjanjem novega primerka ZMStudent zagotovi, da je kontekst this pravilno nastavljen.
+    const uporabnik = new ZMStudent(userData);
+
+    // Prijavi ustvarjeni primerek ZMStudent, da preveri pravilno inicializacijo
+    console.log("Created ZMStudent instance:", uporabnik); // Preveri, ali sta imeni ime in priimek pravilni
+
+    uporabnik.odjava(); 
+
+    localStorage.removeItem("loggedInUser");
+
+    setTimeout(() => {
+      window.location.href = "/front-end/prijava.html";
+    }, 1500);
+  }
 }
 
 // Sprememba osebnih podatkov
@@ -91,8 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("studentImage").src =
       user.image ||
       "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg"; // Uporabi privzeto sliko, če je ni
-  } else {
-    window.location.replace("/front-end/prijava.html"); // Če ni prijavljen, preusmeri na stran za prijavo
   }
 });
 
@@ -151,7 +160,7 @@ function saveProfileChanges() {
     // Prikažite sporočilo o uspehu ali toast
     showToast("Profil uspešno posodobljen!", "success");
     setTimeout(() => {
-    window.location.reload(); // Ponovno naloži stran, da se odražajo spremembe
+      window.location.reload(); // Ponovno naloži stran, da se odražajo spremembe
     }, 1500); // 1500ms zamuda, da je toast viden
   }
 }

@@ -29,14 +29,16 @@
     />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- Preusmeri na prijava če ni logiran -->
-    <script src="/front-end/assets/js/authUser.js"></script>
+    <!-- Toast notifications -->
+    <link rel="stylesheet" href="/front-end//assets/css/toast.css" />
+    <script src="/front-end/assets/js/toast/toast.js"></script>
 
     <!-- Preberi logiranega uporabnika-->
     <script src="/front-end/assets/js/readData/readLoggedInUser.js"></script>
 
     <!-- Glavne razrede in funkcije -->
     <script src="/main-scripts/mainScript.js"></script>
+    <script src="/main-scripts/studenti.js"></script>
   </head>
 
   <body>
@@ -566,6 +568,7 @@
             </div>
           </div>
         </div>
+        <div id="toast-container"></div>
       </div>
       <!-- Footer -->
       <footer>
