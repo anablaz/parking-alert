@@ -1080,5 +1080,29 @@
         }
       }
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve the logged-in user from localStorage
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (user) {
+          // Update the user's profile image and name in the dropdown menu
+          const userImage = document.getElementById("user-image");
+          const userName = document.getElementById("user-name");
+
+          if (userImage && user.image) {
+            userImage.src = user.image; // Set the profile image
+          }
+
+          if (userName) {
+            userName.textContent = `${user.name} ${user.surname}`; // Set the user's full name
+          }
+        } else {
+          console.error("No user found in localStorage.");
+          // Optionally redirect to login page if no user is logged in
+          window.location.href = "/front-end/prijava.html";
+        }
+      });
+    </script>
   </body>
 </html>

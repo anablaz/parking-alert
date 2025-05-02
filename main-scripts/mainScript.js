@@ -1,94 +1,87 @@
-// Uporabnik se lahko registrira
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("#registerForm");
+  const loginForm = document.querySelector("#loginForm");
+  const registerForm = document.querySelector("#registerForm");
+
+  if (loginForm) {
     const usernameInput = document.getElementById("inputUsernameEmail");
     const passwordInput = document.getElementById("inputPassword");
-    const loginUsers = [];
-  
-    form.addEventListener("submit", function (e) {
+    loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
-  
+
       const username = usernameInput.value.trim();
       const password = passwordInput.value.trim();
-  
-      if (username === "" || password === "") {
-        showToast("Vsa polja so obvezna.", "error");
+
+      // Attempt to log in with the entered credentials
+      const user = handleLogin(username, password); 
+
+      if (user) {
+        // If login is successful:
+        showToast("Prijava uspešna!", "success"); // Show success toast
+
+        // You can now use this `user` object to display info or make decisions for the logged-in state
+        setTimeout(() => {
+          window.location.href = "/front-end/index.html"; // Redirect to the home page
+        }, 1500); // Delay to show the success toast
       } else {
-        // Simulacija uspešne registracije
-        // Po potrebi lahko to prenesete v kakšno polje
-        localStorage.setItem("registrationSuccess", "true");
+        // If login fails:
+        showToast("Napačno uporabniško ime ali geslo.", "error");
+      }
+    });
+  }
+
+  if (registerForm) {
+    const usernameInput = registerForm.querySelector("#inputUsernameEmail");
+    const passwordInput = registerForm.querySelector("#inputPassword");
+
+    registerForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      const user = handleRegistration(username, password);
+      if (user) {
         showToast("Registracija uspešna!", "success");
-  
         setTimeout(() => {
           window.location.href = "/front-end/prijava.html";
         }, 1500);
+      } else {
+        showToast("Uporabniško ime že obstaja.", "error");
       }
     });
-  });
-
-  
-// Uporabnik se lahko prijavi v aplikacijo
-
-// Auth
-(function () {
-  const publicPages = ["prijava.html", "ustvariRacun.html", "index.html"];
-  const currentPath = window.location.pathname;
-  const isPublic = publicPages.some((page) => currentPath.includes(page));
-
-  // If user is not logged in and the page is not public, redirect to login page
-  if (!isPublic) {
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (!user) {
-      window.location.href = "/front-end/prijava.html";
-    }
   }
-})();
+});
 
-// Login logic
-function login(username, password) {
+// Handle login
+function handleLogin(username, password) {
+  // Check the hardcoded loginUsers array for matching credentials
   const user = loginUsers.find(
     (u) => u.username === username && u.password === password
   );
 
-  if (user) {
-    const loginData = {
-      ...user,
-      lastLogin: new Date().toISOString(),
-    };
-    localStorage.setItem("loggedInUser", JSON.stringify(loginData));
-    return loginData;
-  }
+  console.log("Stored Users:", loginUsers); // Debugging log
 
-  // Return null if credentials are wrong
-  return null;
+  return user || null; // Return user object if found, or null if not
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-  if (!form) return;
+// Handle registration
+function handleRegistration(username, password) {
+  const loginUsers = JSON.parse(localStorage.getItem("loginUsers")) || [];
 
-  const usernameInput = document.getElementById("inputUsernameEmail");
-  const passwordInput = document.getElementById("inputPassword");
+  // Check if the username already exists
+  const existingUser = loginUsers.find((u) => u.username === username);
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value.trim();
+  if (existingUser) {
+    return null; // Return null if the user already exists
+  }
 
-    const user = login(username, password);
-    if (user) {
-      const student = new ZMStudent(user); // Ensure ZMStudent constructor expects these properties
-      student.prijava(); // Log the login attempt
+  // Create new user object and save it to localStorage
+  const newUser = { username, password };
+  loginUsers.push(newUser);
+  localStorage.setItem("loginUsers", JSON.stringify(loginUsers));
 
-      showToast("Prijava uspešna!", "success"); // Show success toast
-      setTimeout(() => {
-        window.location.href = "/front-end/index.html"; // Redirect after successful login
-      }, 1500); // Delay for toast message to be visible
-    } else {
-      showToast("Napačno uporabniško ime ali geslo.", "error"); // Show error toast
-    }
-  });
-});
+  return newUser; // Return the new user object after registration
+}
 
 // Uporabnik se lahko odjavi iz aplikacije
 
