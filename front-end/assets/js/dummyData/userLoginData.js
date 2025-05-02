@@ -9,7 +9,7 @@ const loginUsers = [
     location: "Ljubljana, Slovenia",
     phone: "+386 40 123 456",
     role: "admin",
-    image: "http://api.randomuser.me/portraits/thumb/men/1.jpg"
+    image: "https://api.randomuser.me/portraits/men/1.jpg"
   },
   {
     username: "akovac",

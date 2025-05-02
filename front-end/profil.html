@@ -37,8 +37,8 @@
     <!-- Preusmeri na prijava če ni logiran -->
     <script src="/front-end/assets/js/authUser.js"></script>
 
-    <!-- Preberi logiranega uporabnika-->
-    <script src="/front-end/assets/js/readData/readLoggedInUser.js"></script>
+    <!-- ZMStudenti-->
+    <script src="/main-scripts/studenti.js"></script>
 
     <!-- Glavne razrede in funkcije -->
     <script src="/main-scripts/mainScript.js"></script>
@@ -533,7 +533,7 @@
               <!-- Profile Image -->
               <div class="imageContainer">
                 <div class="profile-image">
-                  <img id="profileImage" alt="Profile Image" />
+                  <img id="studentImage" alt="Student Image" />
                 </div>
                 <div class="profile-image-edit">
                   <button class="btnProfile btn-primary" type="button">
@@ -541,61 +541,79 @@
                   </button>
                 </div>
               </div>
-          
+
               <!-- Profile Details -->
               <div class="profile-details">
-                <h2 id="userNameDisplay" class="user-name">Uporabnik</h2>
-          
+                <h2 id="studentFullName" class="user-name">Uporabnik</h2>
+
                 <!-- Input za ime -->
                 <div class="user-info">
-                  <label for="name">Ime:</label>
-                  <input type="text" id="userName" value="" readonly />
-                  <span class="edit-icon" onclick="editField('userName', this)">
+                  <label for="studentName">Ime:</label>
+                  <input type="text" id="studentName" value="" readonly />
+                  <span
+                    class="edit-icon"
+                    onclick="editField('studentName', this)"
+                  >
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-          
+
                 <!-- Input za priimek -->
                 <div class="user-info">
-                  <label for="surname">Priimek:</label>
-                  <input type="text" id="surname" value="" readonly />
-                  <span class="edit-icon" onclick="editField('surname', this)">
+                  <label for="studentSurname">Priimek:</label>
+                  <input type="text" id="studentSurname" value="" readonly />
+                  <span
+                    class="edit-icon"
+                    onclick="editField('studentSurname', this)"
+                  >
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-          
+
                 <!-- Input za email -->
                 <div class="user-info">
-                  <label for="email">Email:</label>
-                  <input type="email" id="email" value="" readonly />
-                  <span class="edit-icon" onclick="editField('email', this)">
+                  <label for="studentEmail">Email:</label>
+                  <input type="email" id="studentEmail" value="" readonly />
+                  <span
+                    class="edit-icon"
+                    onclick="editField('studentEmail', this)"
+                  >
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-          
+
                 <!-- Input za bio -->
                 <div class="user-info">
-                  <label for="bio">Bio:</label>
-                  <textarea id="bio" readonly></textarea>
-                  <span class="edit-icon" onclick="editField('bio', this)">
+                  <label for="studentBio">Bio:</label>
+                  <textarea id="studentBio" readonly></textarea>
+                  <span
+                    class="edit-icon"
+                    onclick="editField('studentBio', this)"
+                  >
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-          
+
                 <!-- Input za lokacijo -->
                 <div class="user-info">
-                  <label for="location">Lokacija:</label>
-                  <input type="text" id="location" value="" readonly />
-                  <span class="edit-icon" onclick="editField('location', this)">
+                  <label for="studentLocation">Lokacija:</label>
+                  <input type="text" id="studentLocation" value="" readonly />
+                  <span
+                    class="edit-icon"
+                    onclick="editField('studentLocation', this)"
+                  >
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
-          
+
                 <!-- Input za telefon -->
                 <div class="user-info">
-                  <label for="phone">Telefon:</label>
-                  <input type="tel" id="phone" value="" readonly />
-                  <span class="edit-icon" onclick="editField('phone', this)">
+                  <label for="studentPhone">Telefon:</label>
+                  <input type="tel" id="studentPhone" value="" readonly />
+                  <span
+                    class="edit-icon"
+                    onclick="editField('studentPhone', this)"
+                  >
                     <i class="fa fa-edit"></i>
                   </span>
                 </div>
@@ -1010,5 +1028,57 @@
       type="text/javascript"
       src="/front-end/assets/js/countdown/countdown.js"
     ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve logged-in user from localStorage
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (user) {
+          // Populate the profile details
+          document.getElementById(
+            "studentFullName"
+          ).innerText = `${user.name} ${user.surname}`;
+          document.getElementById("studentName").value = user.name;
+          document.getElementById("studentSurname").value = user.surname;
+          document.getElementById("studentEmail").value = user.email;
+          document.getElementById("studentBio").value = user.bio;
+          document.getElementById("studentLocation").value = user.location;
+          document.getElementById("studentPhone").value = user.phone;
+
+          // Set the profile image
+          const profileImage = document.getElementById("studentImage");
+          if (profileImage && user.image) {
+            profileImage.src = user.image;
+          }
+        } else {
+          console.error("No user found in localStorage.");
+          // Optionally redirect to login page if no user is logged in
+          window.location.href = "/front-end/prijava.html";
+        }
+      });
+
+      // Function to handle editing a field
+      function editField(fieldId, iconElement) {
+        const field = document.getElementById(fieldId);
+
+        // If field is readonly, make it editable
+        if (field.readOnly) {
+          field.readOnly = false;
+          field.focus();
+          iconElement.innerHTML = "<i class='fa fa-save'></i>"; // Change the icon to "save" when in edit mode
+        } else {
+          // After editing, save the changes (e.g., update localStorage if needed)
+          field.readOnly = true;
+          iconElement.innerHTML = "<i class='fa fa-edit'></i>"; // Change the icon back to "edit"
+
+          // Optionally, update the user's data in localStorage (for persistence)
+          const user = JSON.parse(localStorage.getItem("loggedInUser"));
+          if (user) {
+            user[fieldId.replace("student", "").toLowerCase()] = field.value;
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+          }
+        }
+      }
+    </script>
   </body>
 </html>

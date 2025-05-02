@@ -28,12 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
 // Uporabnik se lahko prijavi v aplikacijo
+
 // Auth
 (function () {
-  const publicPages = ["prijava.html", "ustvariRacun.html", ""];
+  const publicPages = ["prijava.html", "ustvariRacun.html", "index.html"];
   const currentPath = window.location.pathname;
   const isPublic = publicPages.some((page) => currentPath.includes(page));
 
+  // If user is not logged in and the page is not public, redirect to login page
   if (!isPublic) {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!user) {
@@ -42,56 +44,53 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 })();
 
-//Sama prijava
+// Login logic
 function login(username, password) {
-    const user = loginUsers.find(
-      (u) => u.username === username && u.password === password
-    );
-  
-    if (user) {
-      // Save the user data and the last login time to localStorage
-      const loginData = {
-        ...user,
-        lastLogin: new Date().toISOString(), // Store current date-time
-      };
-      localStorage.setItem("loggedInUser", JSON.stringify(loginData));
-  
-      return loginData;
-    }
-    return null;
+  const user = loginUsers.find(
+    (u) => u.username === username && u.password === password
+  );
+
+  if (user) {
+    const loginData = {
+      ...user,
+      lastLogin: new Date().toISOString(),
+    };
+    localStorage.setItem("loggedInUser", JSON.stringify(loginData));
+    return loginData;
   }
+
+  // Return null if credentials are wrong
+  return null;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
+  if (!form) return;
+
   const usernameInput = document.getElementById("inputUsernameEmail");
   const passwordInput = document.getElementById("inputPassword");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-
     const username = usernameInput.value.trim();
     const password = passwordInput.value.trim();
-    const user = login(username, password);
 
+    const user = login(username, password);
     if (user) {
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-      showToast("Prijava uspešna!", "success");
+      const student = new ZMStudent(user); // Ensure ZMStudent constructor expects these properties
+      student.prijava(); // Log the login attempt
+
+      showToast("Prijava uspešna!", "success"); // Show success toast
       setTimeout(() => {
-        window.location.href = "/front-end/index.html";
-      }, 1500);
+        window.location.href = "/front-end/index.html"; // Redirect after successful login
+      }, 1500); // Delay for toast message to be visible
     } else {
-      showToast("Napačno uporabniško ime ali geslo.", "error");
+      showToast("Napačno uporabniško ime ali geslo.", "error"); // Show error toast
     }
   });
 });
 
 // Uporabnik se lahko odjavi iz aplikacije
-function logout() {
-  localStorage.clear(); // if you're only using localStorage
-  sessionStorage.clear(); // in case you're also using this
-  document.cookie =
-    "loggedInUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  window.location.replace("/front-end/prijava.html");
-}
 
 // Sprememba osebnih podatkov
 function editField(fieldId, triggerElement) {
