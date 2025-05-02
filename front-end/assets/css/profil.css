@@ -300,6 +300,14 @@ input.editing {
     gap: 12px;
     border-top: 1px solid #dee2e6;
   }
+
+  .save-button-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 20px; /* Optional: space between the inputs and the save button */
+  }
+  
   @keyframes fadeIn {
     from {
       opacity: 0;

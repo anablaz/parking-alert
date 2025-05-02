@@ -211,8 +211,12 @@
         <ul style="margin-right: 0" class="nav navbar-nav navbar-right">
           <li>
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <img id="user-image" alt="" class="admin-pic img-circle" />Živjo!
-              <span id="user-name">Uporabnik</span>
+              <img
+                id="user-image-two"
+                alt=""
+                class="admin-pic img-circle"
+              />Živjo!
+              <span id="user-name-two">Uporabnik</span>
               <b class="caret"></b>
             </a>
             <ul
@@ -604,5 +608,44 @@
     <script src="/front-end/assets/js/dummyData/usersData.js"></script>
     <script src="/front-end/assets/js/readData/readUsersData.js"></script>
     <script src="/front-end/assets/js/readData/readUserNotifData.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (loggedInUser) {
+          // Update the user name
+          const nameElement = document.getElementById("user-name-two");
+          nameElement.textContent = `${loggedInUser.ime} ${loggedInUser.priimek}`;
+
+          // Update the user image
+          const imageElement = document.getElementById("user-image-two");
+          imageElement.src = loggedInUser.image || "/path/to/default-image.jpg"; // fallback to default if none
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (loggedInUser) {
+          // Update user's name
+          const nameElement = document.getElementById("user-name-strong");
+          nameElement.textContent = `${loggedInUser.ime}!`;
+
+          // Optional: update last login time
+          const lastLoginElement = document.getElementById("last-login-time");
+
+          // Example: you could store this time during login and reuse it
+          const lastLogin =
+            loggedInUser.lastLogin ||
+            new Date().toLocaleString("sl-SI", {
+              dateStyle: "long",
+              timeStyle: "short",
+            });
+
+          lastLoginElement.textContent = `Vaša zadnja prijava je bila ${lastLogin}`;
+        }
+      });
+    </script>
   </body>
 </html>
