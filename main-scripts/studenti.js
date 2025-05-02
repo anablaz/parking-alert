@@ -101,9 +101,12 @@ class ZMStudent {
     return {
       ime: this.ime,
       priimek: this.priimek,
-      kontaktTel: this.kontaktTel,
-      kontaktEmail: this.kontaktEmail,
-      trenutnaLokacija: this.trenutnaLokacija,
+      email: this.email,
+      bio: this.bio,
+      location: this.location,
+      phone: this.phone,
+      role: this.role,
+      image: this.image,
     };
   }
 }
