@@ -175,10 +175,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       await student.fetchCurrentLocation();
     } catch (error) {
+      showToast(
+        "Napaka pri pridobivanju trenutne lokacije. Prosim, poskusite znova.","error"
+      );
       console.warn("Could not fetch user location.", error);
     }
   }
 });
+
+// Ročno
 
 // Spremljanje redarjev (simulirano)
 

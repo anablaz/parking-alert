@@ -9,9 +9,10 @@ class ZMStudent {
     this.phone = userData.phone;
     this.image = userData.image;
 
-    console.log("User data passed to constructor:", userData);
+    console.log("Uporabniški podatki, posredovani konstruktorju:", userData);
   }
 
+  //REGOISTRACIJA UPORABNIKA
   registracija() {
     // Preveri, ali uporabnik z isto e-pošto že obstaja.
     const existingUser = users.find((u) => u.email === this.email);
@@ -25,6 +26,7 @@ class ZMStudent {
     return this;
   }
 
+  // PRIJAVA UPORABNIKA
   // Statična metoda za prijavo
   static prijava(email, password) {
     console.log(loginUsers);
@@ -41,19 +43,21 @@ class ZMStudent {
       return user; // Vračanje podatkov o uporabniku
     }
 
-    console.log("User not found or wrong credentials.");
+    console.log("Uporabnik ni najden ali ima napačne poverilnice.");
     return null; // Če ne najde nobenega uporabnika, vrni null
   }
 
+  // ODJAVA UPORABNIKA
   odjava() {
     // Izpiši this, da se dobugga
-    console.log("Current instance of ZMStudent:", this);
+    console.log("Trenutni primerek ZMStudent:", this);
 
     const message = `Uporabik se je uspešno odjavil.`;
     showToast(message, "success");
     localStorage.removeItem("loggedInUser");
   }
 
+  // POSODOBITEV PROFILA
   posodobiProfil(noviPodatki) {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (loggedInUser) {
@@ -78,26 +82,30 @@ class ZMStudent {
     }
   }
 
+  // IZBRISANJE PROFILA
   izbrisiProfil() {
     console.log(`Račun za ${this.ime} ${this.priimek} je izbrisan.`);
     localStorage.removeItem("loggedInUser");
     showToast("Račun uspešno izbrisan.", "success");
 
-    // Preusmeritev na stran za prijavo po izbrisu
+    // Redirect na prijavno stran
     setTimeout(() => {
       window.location.href = "/front-end/prijava.html";
     }, 1500);
   }
 
+  // PRIJAVA REDARJA
   prijaviRedar(lokacijaRedar, lokacija) {
     console.log(
       `${this.ime} je prijavil redarja na lokaciji ${lokacijaRedar} (trenutna: ${lokacija})`
     );
   }
 
+  // POSODOBI LASTNO LOKACIJO
   async fetchCurrentLocation() {
     if (!("geolocation" in navigator)) {
-      console.warn("Geolocation not supported.");
+      showToast("Geolociranje ni podprto.", "warning");
+      console.warn("Geolociranje ni podprto.");
       return null;
     }
 
@@ -113,7 +121,11 @@ class ZMStudent {
             );
             const data = await res.json();
             const locationString = data.display_name || `${lat}, ${lon}`;
-            console.log("User's resolved location:", locationString);
+            showToast(
+              `Vaša trenutna lokacija je: ${locationString}`,
+              "info"
+            );
+            console.log("Uporabnikova rešena lokacija:", locationString);
             this.location = locationString;
 
             // Optional: Update the DOM if this is part of UI update
@@ -124,12 +136,20 @@ class ZMStudent {
 
             resolve(locationString);
           } catch (error) {
-            console.error("Error reverse geocoding:", error);
+            showToast(
+              "Napaka pri pridobivanju geografske lokacije.",
+              "error"
+            );
+            console.error("Napaka povratnega geokodiranja:", error);
             resolve(`${lat}, ${lon}`); // Fallback to raw coords
           }
         },
         (err) => {
-          console.error("Geolocation error:", err);
+          showToast(
+            "Napaka pri pridobivanju geografske lokacije.",
+            "error"
+          );
+          console.error("Napaka geografske lokacije:", err);
           reject(err);
         }
       );
