@@ -36,6 +36,12 @@
 
     <!-- Preusmeri na prijava če ni logiran -->
     <script src="/front-end/assets/js/authUser.js"></script>
+    <script>
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (!user) {
+        window.location.replace("/front-end/prijava.html");
+      }
+    </script>
 
     <!-- ZMStudenti-->
     <script src="/main-scripts/studenti.js"></script>
