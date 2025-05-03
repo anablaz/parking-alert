@@ -17,7 +17,7 @@ parkirnaMesta.forEach(function (parkirisce) {
 });
 console.log(parkirnaMesta); // Dostop do parkirnaMesta po nalaganju datoteke
 
-// Create a custom green icon for the user's current location
+// ustvarjanje želene ikone po meri za uporabnikovo trenutno lokacijo
 var greenIcon = new L.Icon({
   iconUrl: "../front-end/assets/img/pin.png",
   shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
@@ -27,26 +27,31 @@ var greenIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
-// Check if the Geolocation API is available
+// Preveri, ali je na voljo vmesnik API za določanje zemljepisne lokacije
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     function (position) {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
 
-      // Add the green marker for the user's current location
+      // Dodajanje označevalnika po meri za uporabnikovo trenutno lokacijo
       L.marker([lat, lon], { icon: greenIcon })
         .addTo(map)
         .bindPopup("Vaša trenutna lokacija")
         .openPopup();
 
-      // Optionally, you can recenter the map on the user's location:
+      // Po želji lahko zemljevid ponovno postavimo na uporabnikovo lokacijo:
       // map.setView([lat, lon], 13);
     },
     function (error) {
-      console.error("Error fetching current location:", error.message);
+      showToast(
+        "Napaka pri pridobivanju geografske lokacije.",
+        "error"
+      );
+      console.error("Napaka pri pridobivanju trenutne lokacije:", error.message);
     }
   );
 } else {
-  console.warn("Geolocation is not supported by this browser.");
+  showToast("Geolokacija ni podprta v tem brskalniku.", "warning");
+  console.warn("Ta brskalnik ne podpira geolokacije.");
 }
