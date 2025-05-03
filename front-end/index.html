@@ -36,6 +36,7 @@
     <!-- Preberi logiranega uporabnika-->
     <script src="/front-end/assets/js/readData/readLoggedInUser.js"></script>
 
+    <!-- Preusmeri na prijava če ni logiran -->
     <script>
       const user = JSON.parse(localStorage.getItem("loggedInUser"));
       if (!user) {
