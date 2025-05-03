@@ -5,10 +5,8 @@ class ZMStudent {
     this.ime = userData.name;
     this.priimek = userData.surname;
     this.email = userData.email;
-    this.bio = userData.bio;
     this.location = userData.location;
     this.phone = userData.phone;
-    this.role = userData.role;
     this.image = userData.image;
 
     console.log("User data passed to constructor:", userData);
@@ -102,10 +100,8 @@ class ZMStudent {
       ime: this.ime,
       priimek: this.priimek,
       email: this.email,
-      bio: this.bio,
       location: this.location,
       phone: this.phone,
-      role: this.role,
       image: this.image,
     };
   }

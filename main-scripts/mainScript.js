@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("studentName").value = user.ime;
     document.getElementById("studentSurname").value = user.priimek;
     document.getElementById("studentEmail").value = user.email;
-    document.getElementById("studentBio").value = user.bio || "";
     document.getElementById("studentLocation").value = user.location || "";
     document.getElementById("studentPhone").value = user.phone || "";
     document.getElementById("studentImage").src =
@@ -136,7 +135,6 @@ function saveProfileChanges() {
     ime: document.getElementById("studentName").value,
     priimek: document.getElementById("studentSurname").value,
     email: document.getElementById("studentEmail").value,
-    bio: document.getElementById("studentBio").value,
     location: document.getElementById("studentLocation").value,
     phone: document.getElementById("studentPhone").value,
     // Dodaj vsa druga polja, ki jih posodobljamo.
