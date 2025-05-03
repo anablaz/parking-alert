@@ -164,6 +164,21 @@ function saveProfileChanges() {
 }
 
 // Vnos parkirne lokacije (ročno ali z GPS)
+// Preko GPS-a
+document.addEventListener("DOMContentLoaded", async () => {
+  const userData = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (userData) {
+    const student = new ZMStudent(userData);
+
+    // Zdaj uporabimo metodo fetchCurrentLocation
+    try {
+      await student.fetchCurrentLocation();
+    } catch (error) {
+      console.warn("Could not fetch user location.", error);
+    }
+  }
+});
 
 // Spremljanje redarjev (simulirano)
 

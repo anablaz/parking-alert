@@ -5,7 +5,7 @@ class ZMStudent {
     this.ime = userData.name;
     this.priimek = userData.surname;
     this.email = userData.email;
-    this.location = userData.location;
+    this.location = userData.location || "";
     this.phone = userData.phone;
     this.image = userData.image;
 
@@ -27,7 +27,7 @@ class ZMStudent {
 
   // Statična metoda za prijavo
   static prijava(email, password) {
-    console.log(loginUsers); 
+    console.log(loginUsers);
 
     // iskanje uporabnika z ujemanjem e-pošte in gesla
     const userData = loginUsers.find(
@@ -73,7 +73,8 @@ class ZMStudent {
         loggedInUser.location || "";
       document.getElementById("studentPhone").value = loggedInUser.phone || "";
       document.getElementById("studentImage").src =
-        loggedInUser.image || "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg";
+        loggedInUser.image ||
+        "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg";
     }
   }
 
@@ -92,6 +93,47 @@ class ZMStudent {
     console.log(
       `${this.ime} je prijavil redarja na lokaciji ${lokacijaRedar} (trenutna: ${lokacija})`
     );
+  }
+
+  async fetchCurrentLocation() {
+    if (!("geolocation" in navigator)) {
+      console.warn("Geolocation not supported.");
+      return null;
+    }
+
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          try {
+            const res = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+            );
+            const data = await res.json();
+            const locationString = data.display_name || `${lat}, ${lon}`;
+            console.log("User's resolved location:", locationString);
+            this.location = locationString;
+
+            // Optional: Update the DOM if this is part of UI update
+            const locationSpan = document.getElementById("last-location");
+            if (locationSpan) {
+              locationSpan.innerHTML += ` <strong>${locationString}</strong>`;
+            }
+
+            resolve(locationString);
+          } catch (error) {
+            console.error("Error reverse geocoding:", error);
+            resolve(`${lat}, ${lon}`); // Fallback to raw coords
+          }
+        },
+        (err) => {
+          console.error("Geolocation error:", err);
+          reject(err);
+        }
+      );
+    });
   }
 
   getProfil() {
