@@ -45,7 +45,6 @@
     <!-- ZMStudenti-->
     <script src="/main-scripts/studenti.js"></script>
 
-
     <!-- Glavne razrede in funkcije -->
     <script src="/main-scripts/mainScript.js"></script>
 
@@ -527,12 +526,21 @@
         <div class="content-wrap">
           <div class="profileHeadingContainer">
             <h1 class="profileHeading">Profil</h1>
-            <button
-              class="btn btn-danger danger-profile"
-              onclick="openDeleteModal()"
-            >
-              Izbriši profil
-            </button>
+            <div class="button-group-div">
+              <button
+                id="prijaviRedarButton"
+                class="btn btn-primary danger-profile"
+                onclick="openPrijaviRedarModal()"
+              >
+                Prijavi redarja
+              </button>
+              <button
+                class="btn btn-danger danger-profile"
+                onclick="openDeleteModal()"
+              >
+                Izbriši profil
+              </button>
+            </div>
           </div>
           <div class="row rowTable">
             <div class="col-sm-12 profileSectionContainer">
@@ -992,6 +1000,8 @@
       <!-- Modalno okno za brisanje računa -->
       <!-- Div za modal -->
       <div id="deleteModalContainer"></div>
+      <!-- Div za prijavi redar modal -->
+      <div id="prijaviRedarModalContainer"></div>
       <!-- Footer -->
       <footer>
         <div class="footer-content">

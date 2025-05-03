@@ -73,7 +73,7 @@ function logout() {
     // Prijavi ustvarjeni primerek ZMStudent, da preveri pravilno inicializacijo
     console.log("Created ZMStudent instance:", uporabnik); // Preveri, ali sta imeni ime in priimek pravilni
 
-    uporabnik.odjava(); 
+    uporabnik.odjava();
 
     localStorage.removeItem("loggedInUser");
 
@@ -213,3 +213,29 @@ function deleteAccount() {
 }
 
 // Poročanje o opaženih redarjih
+function openPrijaviRedarModal() {
+  fetch("modals/prijaviRedarModal.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("prijaviRedarModalContainer").innerHTML = html;
+
+      const modal = document.querySelector(
+        "#prijaviRedarModalContainer .modal"
+      );
+      if (modal) {
+        modal.style.display = "block";
+      }
+
+      // Add event listener for the delete button inside the modal
+      const prijaviButton = document.querySelector("#prijaviRedar");
+      if (prijaviButton) {
+        // deleteButton.addEventListener("click", () => deleteAccount());
+      }
+
+      // Redefiniraj closeModal, da bo na voljo po vstavitvi
+      window.closeModal = function () {
+        modal.style.display = "none";
+      };
+    })
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
+}

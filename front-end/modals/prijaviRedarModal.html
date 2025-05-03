@@ -1,0 +1,32 @@
+<!-- prijaviRedarModal.html -->
+<!-- Include the modal HTML structure in your main HTML (profil.html) -->
+<div id="prijaviRedarModal" class="modal" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Prijavi redar</h5>
+            <button type="button" class="close" onclick="closeModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="prijaviRedarForm">
+                <label for="lokacija">Lokacija:</label>
+                <input class="redar-lokacija" type="text" id="lokacija" name="lokacija" required><br><br>
+      
+                <label for="heading">Kam se premika:</label>
+                <input class="redar-premika" type="text" id="heading" name="heading" required><br><br>
+                
+                <label for="opis">Opomba:</label>
+                <textarea class="redar-premika-opomba" class="redar-opomba" id="opis" name="opis" required></textarea><br><br>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Prekliči</button>
+            <button class="btn btn-success" onclick="deleteAccount()">Prijavi</button>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+  <script src="/front-end/assets/js/toast/toast.js"></script>
+  <script src="/main-scripts/mainScript.js"></script>

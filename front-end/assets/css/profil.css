@@ -217,107 +217,181 @@ input.editing {
   background-color: #218838;
 }
 
-.profileHeadingContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+.profileHeadingContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
-.danger-profile{
-    width: 150px !important;
+.danger-profile {
+  width: 150px !important;
 }
 
 /* Modal Styling */
 .modal {
-    position: fixed;
-    z-index: 1050;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .modal-dialog {
-    max-width: 600px;
-    margin: 100px auto;
-    width: 90%;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(56, 55, 55, 0.066);
-    animation: fadeIn 0.3s ease-out;
-  }
+.modal-dialog {
+  max-width: 600px;
+  margin: 100px auto;
+  width: 90%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(56, 55, 55, 0.066);
+  animation: fadeIn 0.3s ease-out;
+}
 
-  .modal-content {
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    font-size: 1.2rem;
-  }
+.modal-content {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 1.2rem;
+}
 
-  .modal-header {
-    background-color: #f8f9fa;
-    padding: 1.2rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.modal-header {
+  background-color: #f8f9fa;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .modal-title {
-    font-weight: 700; /* Bold title */
-    font-size: 1.5rem; /* Larger title */
-    margin: 0;
-    color: #333; /* Darker title color */
-  }
+.modal-title {
+  font-weight: 700; /* Bold title */
+  font-size: 1.5rem; /* Larger title */
+  margin: 0;
+  color: #333; /* Darker title color */
+}
 
-  .close {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    color: #000;
-    padding: 0;
-    margin-left: 1rem;
-  }
+.close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #000;
+  padding: 0;
+  margin-left: 1rem;
+}
 
-  .modal-body {
-    padding: 1.5rem;
-    font-weight: 500;
-    font-size: 14px;
-    color: #333;
-  }
+.modal-body {
+  padding: 1.5rem;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
 
-  .modal-footer {
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    border-top: 1px solid #dee2e6;
-  }
+.modal-footer {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #dee2e6;
+}
 
-  .save-button-container {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    margin-top: 20px; /* Optional: space between the inputs and the save button */
+.save-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 20px; /* Optional: space between the inputs and the save button */
+}
+
+.button-group-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Style for the prijaviRedarForm */
+#prijaviRedarForm {
+  padding: 20px;
+}
+
+/* Style for the input fields */
+#prijaviRedarForm input[type="text"] {
+  width: 100%;
+  padding: 11px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Style for the redar-lokacija input */
+.redar-lokacija {
+  background-color: #f8f8f8;
+}
+
+/* Style for the redar-premika input */
+.redar-premika {
+  background-color: #f8f8f8;
+}
+
+/* Focus state for input fields */
+#prijaviRedarForm input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style for the redar-premika-opomba textarea */
+.redar-premika-opomba {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease;
+  min-height: 120px; /* Set a minimum height for the textarea */
+}
+
+/* Focus state for textarea */
+.redar-premika-opomba:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style for the placeholder text inside textarea */
+.redar-premika-opomba::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Style for the redar-opomba class if it exists (in case it's an additional class on the same textarea) */
+.redar-opomba {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
 /* Responsive Styling */
 @media (max-width: 768px) {
