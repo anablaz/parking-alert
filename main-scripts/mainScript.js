@@ -219,7 +219,6 @@ function openDeleteModal() {
     })
     .catch(
       (err) => console.error("Ni uspelo naložiti modalnega okna:", err),
-      showToast("Napaka pri nalaganju modalnega okna.", "error")
     );
 }
 
@@ -263,6 +262,5 @@ function openPrijaviRedarModal() {
     })
     .catch(
       (err) => console.error("Ni uspelo naložiti modalnega okna:", err),
-      showToast("Napaka pri nalaganju modalnega okna.", "error")
     );
 }
