@@ -226,7 +226,7 @@ function openPrijaviRedarModal() {
         modal.style.display = "block";
       }
 
-      // Add event listener for the delete button inside the modal
+      // Add event listener for the prijavi button inside the modal
       const prijaviButton = document.querySelector("#prijaviRedar");
       if (prijaviButton) {
         // deleteButton.addEventListener("click", () => deleteAccount());

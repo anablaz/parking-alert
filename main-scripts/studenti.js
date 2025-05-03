@@ -27,7 +27,6 @@ class ZMStudent {
 
   // Statična metoda za prijavo
   static prijava(email, password) {
-    // Prepričajte se, da je loginUsers dostopen
     console.log(loginUsers); 
 
     // iskanje uporabnika z ujemanjem e-pošte in gesla
@@ -37,8 +36,8 @@ class ZMStudent {
 
     // Če je uporabnik najden, ustvari nov primerek ZMStudent in se prijavi
     if (userData) {
-      const user = new ZMStudent(userData); // Ustvari nov primerek ZMStudent
-      console.log(`${user.ime} ${user.priimek} se je prijavil.`); // Sporočilo o uspešni prijavi
+      const user = new ZMStudent(userData);
+      console.log(`${user.ime} ${user.priimek} se je prijavil.`);
       return user; // Vračanje podatkov o uporabniku
     }
 
@@ -47,7 +46,7 @@ class ZMStudent {
   }
 
   odjava() {
-    // Log 'this' to make sure it's referring to the correct instance
+    // Izpiši this, da se dobugga
     console.log("Current instance of ZMStudent:", this);
 
     const message = `Uporabik se je uspešno odjavil.`;
@@ -61,11 +60,11 @@ class ZMStudent {
       // Posodabljanje uporabniških podatkov
       Object.assign(loggedInUser, noviPodatki);
 
-      // SShranjevanje posodobljenih podatkov nazaj v lokalno shrambo
+      // Shranjevanje posodobljenih podatkov nazaj v lokalno shrambo
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
       console.log("Profil posodobljen:", loggedInUser);
 
-      // Po želji posodobi polja profila v uporabniškem vmesniku
+      // Posodobi polja profila v uporabniškem vmesniku
       document.getElementById("studentName").value = loggedInUser.ime;
       document.getElementById("studentSurname").value = loggedInUser.priimek;
       document.getElementById("studentEmail").value = loggedInUser.email;
@@ -83,7 +82,7 @@ class ZMStudent {
     localStorage.removeItem("loggedInUser");
     showToast("Račun uspešno izbrisan.", "success");
 
-    // Redirect to the login page after deletion
+    // Preusmeritev na stran za prijavo po izbrisu
     setTimeout(() => {
       window.location.href = "/front-end/prijava.html";
     }, 1500);
