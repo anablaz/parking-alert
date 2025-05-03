@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const password = passwordInput.value.trim();
 
       console.log(
-        `Attempting login with email: ${email} and password: ${password}`
+        `Poskus prijave z e-pošto: ${email} in geslom: ${password}`
       );
 
       // Poskus prijave z uporabo statične metode razreda ZMStudent
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Uporabnik se lahko odjavi iz aplikacije
 function logout() {
   const userData = JSON.parse(localStorage.getItem("loggedInUser"));
-  console.log("User data retrieved from localStorage:", userData);
+  console.log("Uporabniški podatki, pridobljeni iz shrambe localStorage:", userData);
 
   // Dodaj to vrstico, da preveri, kaj je v userData
   console.log(userData); // Debugging line
@@ -71,7 +71,7 @@ function logout() {
     const uporabnik = new ZMStudent(userData);
 
     // Prijavi ustvarjeni primerek ZMStudent, da preveri pravilno inicializacijo
-    console.log("Created ZMStudent instance:", uporabnik); // Preveri, ali sta imeni ime in priimek pravilni
+    console.log("Ustvarjen primerek ZMStudent:", uporabnik); // Preveri, ali sta imeni ime in priimek pravilni
 
     uporabnik.odjava();
 
@@ -176,7 +176,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       await student.fetchCurrentLocation();
     } catch (error) {
       showToast(
-        "Napaka pri pridobivanju trenutne lokacije. Prosim, poskusite znova.","error"
+        "Napaka pri pridobivanju trenutne lokacije. Prosim, poskusite znova.",
+        "error"
       );
       console.warn("Could not fetch user location.", error);
     }
@@ -185,15 +186,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Ročno
 
-// Spremljanje redarjev (simulirano)
+// SPREMLJANJE REDARJEV (SIMULACIJA)
 
-// Opozorilo, če je redar blizu
+// OPOZORILO, ČE JE REDAR BLIZU
 
-// Možnost potrditve opozorila
+// MOŽNOST POTRDITVE OPOZORILA
 
-// Pregled preteklih opozoril
+// PREGLED PRETEKLIH OPOZORIL
 
-// Uporabnik lahko izbriše račun
+// IZBRIS RAČUNA
 function openDeleteModal() {
   fetch("modals/izbrisiRacunModal.html")
     .then((response) => response.text())
@@ -205,7 +206,7 @@ function openDeleteModal() {
         modal.style.display = "block";
       }
 
-      // Add event listener for the delete button inside the modal
+      // Dodaj poslušalca dogodkov za gumb za brisanje znotraj modalnega okna
       const deleteButton = document.querySelector("#deleteButton");
       if (deleteButton) {
         deleteButton.addEventListener("click", () => deleteAccount());
@@ -216,7 +217,10 @@ function openDeleteModal() {
         modal.style.display = "none";
       };
     })
-    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
+    .catch(
+      (err) => console.error("Ni uspelo naložiti modalnega okna:", err),
+      showToast("Napaka pri nalaganju modalnega okna.", "error")
+    );
 }
 
 function deleteAccount() {
@@ -232,7 +236,7 @@ function deleteAccount() {
   }
 }
 
-// Poročanje o opaženih redarjih
+// POROČANJE O OPAŽENIH REDARJUEV
 function openPrijaviRedarModal() {
   fetch("modals/prijaviRedarModal.html")
     .then((response) => response.text())
@@ -246,7 +250,7 @@ function openPrijaviRedarModal() {
         modal.style.display = "block";
       }
 
-      // Add event listener for the prijavi button inside the modal
+      // Dodaj poslušalca dogodkov za gumb prijavi znotraj modalnega okna
       const prijaviButton = document.querySelector("#prijaviRedar");
       if (prijaviButton) {
         // deleteButton.addEventListener("click", () => deleteAccount());
@@ -257,5 +261,8 @@ function openPrijaviRedarModal() {
         modal.style.display = "none";
       };
     })
-    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
+    .catch(
+      (err) => console.error("Ni uspelo naložiti modalnega okna:", err),
+      showToast("Napaka pri nalaganju modalnega okna.", "error")
+    );
 }

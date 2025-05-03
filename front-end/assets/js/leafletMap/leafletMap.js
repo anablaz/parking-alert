@@ -16,3 +16,37 @@ parkirnaMesta.forEach(function (parkirisce) {
     .bindPopup(parkirisce.ime);
 });
 console.log(parkirnaMesta); // Dostop do parkirnaMesta po nalaganju datoteke
+
+// Create a custom green icon for the user's current location
+var greenIcon = new L.Icon({
+  iconUrl: "../front-end/assets/img/pin.png",
+  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconSize: [40, 43],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+// Check if the Geolocation API is available
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      // Add the green marker for the user's current location
+      L.marker([lat, lon], { icon: greenIcon })
+        .addTo(map)
+        .bindPopup("Vaša trenutna lokacija")
+        .openPopup();
+
+      // Optionally, you can recenter the map on the user's location:
+      // map.setView([lat, lon], 13);
+    },
+    function (error) {
+      console.error("Error fetching current location:", error.message);
+    }
+  );
+} else {
+  console.warn("Geolocation is not supported by this browser.");
+}
