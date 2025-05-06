@@ -523,7 +523,16 @@
         <!-- KONEC BREADCRUMBA -->
         <div class="profileHeadingContainer">
           <div class="button-group-div">
-            <button class="btn btn-success danger-profile" onclick="openDodajLokacijoModal()">
+            <button
+              class="btn btn-success danger-profile"
+              onclick="openToggleGPS()"
+            >
+              GPS
+            </button>
+            <button
+              class="btn btn-success danger-profile"
+              onclick="openDodajLokacijoModal()"
+            >
               Izberi lokacijo
             </button>
             <button
@@ -591,6 +600,8 @@
         <div id="toast-container"></div>
         <!-- Div za prijavi redar modal -->
         <div id="prijaviRedarModalContainer"></div>
+        <!-- Div za GPS -->
+        <div id="gpsModal"></div>
       </div>
       <!-- Footer -->
       <footer>
