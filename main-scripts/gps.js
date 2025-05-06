@@ -1,53 +1,84 @@
-// Boundary class: SVGPS
 class SVGPS {
-    // Private attribute
-    #jeVklopljen;
-  
-    constructor() {
-      this.#jeVklopljen = false; // default value
-    }
-  
-    // Method to simulate acquiring location of a Student
-    pridobiLokacijo() {
-      // Logic to return a Student object
-      // Placeholder return
-      return {
-        ime: "Test Student",
-        lokacija: { x: 100, y: 200 }
-      };
-    }
-  
-    // Method to simulate removing a Redar (inspector)
-    izslediRedar() {
-      // Logic to return a Redar object
-      // Placeholder return
-      return {
-        ime: "Redar Novak",
-        lokacija: { x: 150, y: 250 }
-      };
-    }
-  
-    // Method to get presumed location of the Redar
-    kjeBiLahkoBilRedar() {
-      // Logic to return a PredpostavljenaLokacijaRedarja object
-      // Placeholder return
-      return {
-        lokacija: { x: 170, y: 230 },
-        natančnost: "80%"
-      };
-    }
-  
-    // Optional: methods to control GPS state
-    vklopiGPS() {
-      this.#jeVklopljen = true;
-    }
-  
-    izklopiGPS() {
-      this.#jeVklopljen = false;
-    }
-  
-    isGPSVklopljen() {
-      return this.#jeVklopljen;
+  // Private attribute
+  #jeVklopljen;
+
+  constructor(showToastFn, fetchLocationFn, resetLocationUICallback = null) {
+    this.#jeVklopljen = false;
+    this.showToast = showToastFn;
+    this.fetchLocation = fetchLocationFn;
+    this.resetLocationUI = resetLocationUICallback;
+    this.location = null;
+  }
+
+
+  // Method to simulate acquiring location of a Student
+  pridobiLokacijo() {
+    if (this.location) {
+      return this.location;
+    } else {
+      this.showToast("Lokacija ni na voljo.", "warning");
+      console.warn("Lokacija ni bila pridobljena.");
+      return null; // Return null if no location is available
     }
   }
-  
+
+  // Method to turn on GPS and fetch the location
+  async vklopiGPS() {
+    this.#jeVklopljen = true;
+    this.showToast("GPS je bil vklopljen.", "success");
+
+    try {
+      const location = await this.fetchLocation();
+      if (location) {
+        this.location = location;
+        this.showToast(`Vaša lokacija: ${location}`, "info");
+      } else {
+        this.showToast("Ni mogoče pridobiti lokacije.", "error");
+        console.error("GPS: Ni bila pridobljena veljavna lokacija.");
+      }
+    } catch (err) {
+      this.showToast("Ni mogoče pridobiti lokacije.", "error");
+      console.error("Napaka pri GPS lokaciji:", err);
+      this.location = null; // Reset location on error
+    }
+  }
+
+  // Method to turn off GPS
+  izklopiGPS() {
+    this.#jeVklopljen = false;
+    this.showToast("GPS je bil izklopljen.", "info");
+    this.location = null;
+
+    // Optional UI reset
+    if (typeof this.resetLocationUI === "function") {
+      this.resetLocationUI();
+    }
+  }
+
+  // Method to check if GPS is turned on
+  isGPSVklopljen() {
+    return this.#jeVklopljen;
+  }
+
+  // Method to simulate removing a Redar (inspector)
+  izslediRedar() {
+    // Logic to return a Redar object
+    return {
+      ime: "Redar Novak",
+      lokacija: { x: 150, y: 250 }
+    };
+  }
+
+  // Method to get the current location (for external access)
+  getLokacija() {
+    return this.location;
+  }
+
+  // Method to get presumed location of the Redar
+  kjeBiLahkoBilRedar() {
+    return {
+      lokacija: { x: 170, y: 230 },
+      natančnost: "80%"
+    };
+  }
+}

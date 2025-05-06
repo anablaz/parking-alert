@@ -1,5 +1,5 @@
 class ZMStudent {
-  constructor(userData) {
+  constructor(userData, gpsInstance) {
     this.username = userData.username;
     this.password = userData.password;
     this.ime = userData.name;
@@ -8,6 +8,8 @@ class ZMStudent {
     this.location = userData.location || "";
     this.phone = userData.phone;
     this.image = userData.image;
+
+    this.gps = gpsInstance; // ✅ store the GPS class instance here
 
     console.log("Uporabniški podatki, posredovani konstruktorju:", userData);
   }
@@ -128,7 +130,7 @@ class ZMStudent {
             console.log("Uporabnikova rešena lokacija:", locationString);
             this.location = locationString;
 
-            // Optional: Update the DOM if this is part of UI update
+            // Po želji: Posodobitev DOM, če je to del posodobitve uporabniškega vmesnika
             const locationSpan = document.getElementById("last-location");
             if (locationSpan) {
               locationSpan.innerHTML += ` <strong>${locationString}</strong>`;
@@ -141,7 +143,7 @@ class ZMStudent {
               "error"
             );
             console.error("Napaka povratnega geokodiranja:", error);
-            resolve(`${lat}, ${lon}`); // Fallback to raw coords
+            resolve(`${lat}, ${lon}`); // Nazadovanje na surove koordinate
           }
         },
         (err) => {
@@ -154,6 +156,33 @@ class ZMStudent {
         }
       );
     });
+  }
+
+  async vklopiGPS() {
+    if (!this.gps) {
+      showToast("GPS modul ni inicializiran.", "error");
+      return;
+    }
+
+    await this.gps.vklopiGPS(); // prikaži toast in prikliči lokacijo
+    this.location = this.gps.getLokacija(); // posodobitev lokacije učenca
+  }
+
+  izklopiGPS() {
+    if (!this.gps) {
+      showToast("GPS modul ni inicializiran.", "error");
+      return;
+    }
+  
+    this.location = ""; // Izbriši uporabnikovo shranjeno lokacijo
+    this.gps.izklopiGPS();
+    showToast("GPS je izklopljen.", "info");
+  
+    // Po želji: Izbriši lokacijo iz uporabniškega vmesnika
+    const locationSpan = document.getElementById("last-location");
+    if (locationSpan) {
+      locationSpan.innerHTML = "<strong>Ni aktivna lokacija</strong>";
+    }
   }
 
   getProfil() {

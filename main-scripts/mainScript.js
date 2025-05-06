@@ -16,10 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
         `Poskus prijave z e-pošto: ${email} in geslom: ${password}`
       );
 
+      // Create GPS instance
+      const gpsInstance = new SVGPS(showToast, fetchCurrentLocation);
+
       // Poskus prijave z uporabo statične metode razreda ZMStudent
       const user = ZMStudent.prijava(email, password); // Statični klic metode
 
       if (user) {
+
+        // Attach GPS to user object
+        user.gps = gpsInstance;
         // Login successful
         showToast("Prijava uspešna!", "success");
 
@@ -263,4 +269,85 @@ function openPrijaviRedarModal() {
     .catch(
       (err) => console.error("Ni uspelo naložiti modalnega okna:", err),
     );
+}
+
+
+// TOGGLE GPS MODAL
+function openToggleGPS() {
+  fetch("modals/switchGPSModal.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("gpsModal").innerHTML = html;
+
+      const modal = document.querySelector("#gpsModal .modal");
+      if (modal) {
+        modal.style.display = "block";
+      }
+
+      // Preverite stanje geolokacije in nastavite stanje preklapljanja
+      isGeolocationEnabled().then((geolocationEnabled) => {
+        const gpsToggle = document.getElementById('gpsToggle');
+
+        if (geolocationEnabled) {
+          gpsToggle.checked = true; // Če je geolokacija omogočena, nastavi preklop na „vklopljeno“.
+        } else {
+          gpsToggle.checked = false; // Če geolokacija ni omogočena, nastavi preklop na „izklopljeno“.
+        }
+
+        // Posodobitev besedila stanja glede na stanje preklopa
+        updateGPSStatus(gpsToggle.checked);
+      });
+
+      // Dodaj poslušalca dogodka za preklapljanje GPS ob spremembi
+      const gpsToggle = document.getElementById('gpsToggle');
+      if (gpsToggle) {
+        gpsToggle.addEventListener('change', async (event) => {
+          const isChecked = event.target.checked;
+
+          if (isChecked) {
+            // Vključi GPS
+            await student.vklopiGPS(); // Uporabi metodo ZMStudent za omogočanje GPS
+          } else {
+            // Izklop GPS
+            student.izklopiGPS(); // Uporabi metodo ZMStudent za onemogočanje GPS
+          }
+
+          // Posodobitev besedila o stanju GPS
+          updateGPSStatus(isChecked);
+        });
+      }
+      // Redefiniraj closeModal, da bo na voljo po vstavitvi
+      window.closeModal = function () {
+        modal.style.display = "none";
+      };
+    })
+
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
+}
+
+// Funkcija za preverjanje, ali je v brskalniku omogočena geolokacija
+function isGeolocationEnabled() {
+  return new Promise((resolve) => {
+    if (!("geolocation" in navigator)) {
+      resolve(false); // Geolocation not supported
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        () => resolve(true), // Če je geolokacija dovoljena
+        () => resolve(false) // Če je geolokacija zavrnjena
+      );
+    }
+  });
+}
+
+// Funkcija za posodobitev besedila stanja GPS v modalnem oknu
+function updateGPSStatus(isChecked) {
+  const gpsStatus = document.getElementById('gpsStatus');
+
+  if (gpsStatus) {
+    if (isChecked) {
+      gpsStatus.textContent = "GPS je vklopljen";
+    } else {
+      gpsStatus.textContent = "GPS je izklopljen";
+    }
+  }
 }

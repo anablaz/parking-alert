@@ -1,0 +1,77 @@
+<!-- GPS Toggle Modal -->
+<div id="gpsModal" class="modal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upravljanje GPS</h5>
+          <button type="button" class="close" onclick="closeModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Vklopite ali izklopite GPS s spodnjim stikalom.</p>
+  
+          <label class="switch">
+            <input type="checkbox" id="gpsToggle" />
+            <span class="slider round"></span>
+          </label>
+  
+          <p id="gpsStatus">GPS je izklopljen</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="/front-end/assets/js/toast/toast.js"></script>
+  <script src="/main-scripts/mainScript.js"></script>
+  
+  <!-- Modal Styles -->
+  <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      margin-top: 1rem;
+    }
+  
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+  
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  
+    input:checked + .slider {
+      background-color: #4caf50;
+    }
+  
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+  </style>
+
+  

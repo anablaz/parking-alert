@@ -303,6 +303,7 @@ input.editing {
   justify-content: flex-end;
   width: 100%;
   margin-top: 20px; /* Optional: space between the inputs and the save button */
+  gap: 20px;
 }
 
 .button-group-div {
