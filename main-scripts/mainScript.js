@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Debug: Ensure we're reaching the redirect code
         console.log("Redirecting to profile page...");
+        showToast(
+          `Prijava uspešna! Pozdravljen/a ${user.ime} ${user.priimek}.`, "success")
 
         // Redirect to the profile page
         setTimeout(() => {
