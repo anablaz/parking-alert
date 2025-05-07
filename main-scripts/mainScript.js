@@ -226,7 +226,138 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Ročno
+// ROČNO VNAŠANJE PARKIRNE LOKACIJE
+// IZBERI PARKIRIŠČE
+function izberiLokacijoModal() {
+  fetch("modals/izberiParkirisceModal.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("izberiParkirisceModal").innerHTML = html;
+
+      const modal = document.querySelector("#izberiParkirisceModal .modal");
+      if (modal) {
+        modal.style.display = "block";
+      }
+
+      // seznam parkirišč dinamično napolni z uvoženimi podatki.
+      populateParkingList();
+
+      // Dodaj poslušalca dogodkov za vnos iskanja za filtriranje možnosti parkiranja
+      const searchInput = document.getElementById("searchParking");
+      searchInput.addEventListener("input", function (e) {
+        filterParkingList(e.target.value.toLowerCase());
+      });
+
+      // dodaj poslušalca dogodkov za gumb za brisanje
+      const deleteButton = document.querySelector("#deleteButton");
+      if (deleteButton) {
+        // deleteButton.addEventListener("click", () => deleteAccount());
+      }
+
+      // Redefiniraj closeModal, da bo na voljo po vstavitvi
+      window.closeModal = function () {
+        modal.style.display = "none";
+      };
+    })
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
+}
+
+// Funkcija za dinamično polnjenje seznama parkirišč z uporabo uvoženih podatkov
+function populateParkingList() {
+  import("/front-end/assets/js/dummyData/parkingdata.js")
+    .then((module) => {
+      const parkirnaMesta = module.parkirnaMesta;
+      console.log("Parkirna mesta:", parkirnaMesta);
+
+      parkirnaMesta.forEach((parkirisce) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = parkirisce.ime;
+        listItem.onclick = () => selectParking(parkirisce);
+        parkingList.appendChild(listItem);
+      });
+
+      document.querySelector(".dropdown").classList.add("show");
+    })
+    .catch((error) => {
+      console.error("Error loading parking data:", error);
+    });
+
+  // Prikaži spustno okno, ko so možnosti izpolnjene
+  document.querySelector(".dropdown-parking").classList.add("show");
+}
+
+// Funkcija za filtriranje seznama parkirišč na podlagi vnosa za iskanje
+function filterParkingList(searchText) {
+  const parkingList = document.getElementById("parkingList");
+  const listItems = parkingList.getElementsByTagName("li");
+
+  for (let i = 0; i < listItems.length; i++) {
+    const item = listItems[i];
+    const name = item.textContent.toLowerCase();
+
+    if (name.includes(searchText)) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  }
+}
+
+let selectedParkingLocation = null;
+
+// Funkcija za izbiro parkirnega mesta s seznama
+function selectParking(parkirisce) {
+  document.getElementById("searchParking").value = parkirisce.ime;
+  document.querySelector(".dropdown-parking").classList.remove("show");
+
+  // Shranjevanje izbrane lokacije v globalno spremenljivko
+  selectedParkingLocation = parkirisce;
+}
+
+function confirmSelectedParking() {
+  if (!selectedParkingLocation) {
+    showToast("Prosimo, najprej izberite parkirišče.", "warning");
+    return;
+  }
+
+  const { ime, latitude, longitude } = selectedParkingLocation;
+
+  // Posodobitev zemljevida z izbrano lokacijo parkirišča
+  updateCurrentLocationMarker(latitude, longitude, `Izbrana lokacija: ${ime}`);
+
+  // Shranjevanje lokacije v localStorage (po potrebi)
+  const userData = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (userData) {
+    userData.location = ime;
+    localStorage.setItem("loggedInUser", JSON.stringify(userData));
+  }
+
+  // Posodobitev DOM
+  const locationSpan = document.getElementById("last-location");
+  if (locationSpan) {
+    locationSpan.innerHTML = ` <strong>${ime}</strong>`;
+  }
+
+  // Prikaži potrditev
+  showToast(`Izbrana lokacija: ${ime}`, "success");
+
+  // Zapri modalno okno
+  closeModal();
+}
+
+// Izpostavi globalnemu objektu okna, tako da lahko do njega dostopa funkcija onclick
+window.confirmSelectedParking = confirmSelectedParking;
+
+function showDropdown() {
+  document.querySelector(".dropdown-parking").style.display = "block";
+}
+
+function hideDropdown() {
+  // Zakasnitev skrivanja za omogočanje izbire elementa seznama
+  setTimeout(() => {
+    document.querySelector(".dropdown-parking").style.display = "none";
+  }, 200);
+}
 
 // SPREMLJANJE REDARJEV (SIMULACIJA)
 
@@ -287,23 +418,23 @@ function openToggleGPS() {
 
       const gpsToggle = document.getElementById("gpsToggle");
 
-      // Only check geolocation once on modal open
+      // Geolokacijo preveri samo enkrat ob odprtju modalnega okna
       isGeolocationEnabled().then((geolocationEnabled) => {
         console.log("Initial geolocation check:", geolocationEnabled);
         gpsToggle.checked = geolocationEnabled;
         updateGPSStatus(geolocationEnabled);
       });
 
-      // Toggle event — updates UI only
+      // Dogodek Toggle - posodobi samo uporabniški vmesnik
       if (gpsToggle) {
         gpsToggle.addEventListener("change", (event) => {
           const isChecked = event.target.checked;
           console.log("GPS Toggle Changed: ", isChecked);
-          updateGPSStatus(isChecked); // Just update the text
+          updateGPSStatus(isChecked); // Samo posodobite besedilo
         });
       }
 
-      // Modal close function
+      // Zapri modalno okno
       window.closeModal = function () {
         modal.style.display = "none";
       };
@@ -311,7 +442,7 @@ function openToggleGPS() {
     .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
 }
 
-// Check geolocation support
+// Preveri podporo za geografsko lokacijo
 function isGeolocationEnabled() {
   return new Promise((resolve) => {
     if (!("geolocation" in navigator)) {
@@ -325,7 +456,7 @@ function isGeolocationEnabled() {
   });
 }
 
-// Updates the GPS status text in the modal
+// Posodobi besedilo stanja GPS v modalnem oknu
 function updateGPSStatus(isChecked) {
   const gpsStatus = document.getElementById("gpsStatus");
   console.log("Updating GPS Status with innerHTML:", isChecked);
@@ -334,137 +465,4 @@ function updateGPSStatus(isChecked) {
     gpsStatus.innerHTML = isChecked ? "GPS je vklopljen" : "GPS je izklopljen";
     console.log("Status text set to:", gpsStatus.innerHTML);
   }
-}
-
-// IZBERI PARKIRIŠČE
-function izberiLokacijoModal() {
-  fetch("modals/izberiParkirisceModal.html")
-    .then((response) => response.text())
-    .then((html) => {
-      document.getElementById("izberiParkirisceModal").innerHTML = html;
-
-      const modal = document.querySelector("#izberiParkirisceModal .modal");
-      if (modal) {
-        modal.style.display = "block";
-      }
-
-      // Populate the parking list dynamically with the imported data
-      populateParkingList();
-
-      // Add event listener for search input to filter parking options
-      const searchInput = document.getElementById("searchParking");
-      searchInput.addEventListener("input", function (e) {
-        filterParkingList(e.target.value.toLowerCase());
-      });
-
-      // Optional: Add event listener for delete button if required
-      const deleteButton = document.querySelector("#deleteButton");
-      if (deleteButton) {
-        // deleteButton.addEventListener("click", () => deleteAccount());
-      }
-
-      // Redefiniraj closeModal, da bo na voljo po vstavitvi
-      window.closeModal = function () {
-        modal.style.display = "none";
-      };
-    })
-    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
-}
-
-// Function to populate the parking list dynamically using the imported data
-function populateParkingList() {
-  import("/front-end/assets/js/dummyData/parkingdata.js")
-    .then((module) => {
-      const parkirnaMesta = module.parkirnaMesta;
-      console.log("Parkirna mesta:", parkirnaMesta);
-
-      parkirnaMesta.forEach((parkirisce) => {
-        const listItem = document.createElement("li");
-        listItem.textContent = parkirisce.ime;
-        listItem.onclick = () => selectParking(parkirisce);
-        parkingList.appendChild(listItem);
-      });
-
-      document.querySelector(".dropdown").classList.add("show");
-    })
-    .catch((error) => {
-      console.error("Error loading parking data:", error);
-    });
-
-  // Display the dropdown once options are populated
-  document.querySelector(".dropdown-parking").classList.add("show");
-}
-
-// Function to filter the parking list based on the search input
-function filterParkingList(searchText) {
-  const parkingList = document.getElementById("parkingList");
-  const listItems = parkingList.getElementsByTagName("li");
-
-  for (let i = 0; i < listItems.length; i++) {
-    const item = listItems[i];
-    const name = item.textContent.toLowerCase();
-
-    if (name.includes(searchText)) {
-      item.style.display = "block";
-    } else {
-      item.style.display = "none";
-    }
-  }
-}
-
-let selectedParkingLocation = null;
-
-// Function to select a parking spot from the list
-function selectParking(parkirisce) {
-  document.getElementById("searchParking").value = parkirisce.ime;
-  document.querySelector(".dropdown-parking").classList.remove("show");
-
-  // Save selected location to global variable
-  selectedParkingLocation = parkirisce;
-
-}
-
-function confirmSelectedParking() {
-  if (!selectedParkingLocation) {
-    showToast("Prosimo, najprej izberite parkirišče.", "warning");
-    return;
-  }
-
-  const { ime, latitude, longitude } = selectedParkingLocation;
-
-  // Update the map with the selected parking location
-  updateCurrentLocationMarker(latitude, longitude, `Izbrana lokacija: ${ime}`);
-
-  // Save the location to localStorage (as needed)
-  const userData = JSON.parse(localStorage.getItem("loggedInUser"));
-  if (userData) {
-    userData.location = ime;
-    localStorage.setItem("loggedInUser", JSON.stringify(userData));
-  }
-
-  // Update the DOM
-  const locationSpan = document.getElementById("last-location");
-  if (locationSpan) {
-    locationSpan.innerHTML = ` <strong>${ime}</strong>`;
-  }
-
-  // Show confirmation
-  showToast(`Izbrana lokacija: ${ime}`, "success");
-
-  // Close the modal
-  closeModal();
-}
-
-// Expose it to the global window object so that onclick can access it
-window.confirmSelectedParking = confirmSelectedParking;
-
-function showDropdown() {
-  document.querySelector(".dropdown-parking").style.display = "block";
-}
-
-function hideDropdown() {
-  // Delay hiding to allow selection of list item
-  setTimeout(() => {
-    document.querySelector(".dropdown-parking").style.display = "none";
-  }, 200);
 }
