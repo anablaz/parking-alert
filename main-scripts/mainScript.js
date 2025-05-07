@@ -412,13 +412,51 @@ function filterParkingList(searchText) {
   }
 }
 
+let selectedParkingLocation = null;
 
 // Function to select a parking spot from the list
 function selectParking(parkirisce) {
-  // Set the value of the input to the selected parking spot
   document.getElementById("searchParking").value = parkirisce.ime;
+  document.querySelector(".dropdown-parking").classList.remove("show");
+
+  // Save selected location to global variable
+  selectedParkingLocation = parkirisce;
 
 }
+
+function confirmSelectedParking() {
+  if (!selectedParkingLocation) {
+    showToast("Prosimo, najprej izberite parkirišče.", "warning");
+    return;
+  }
+
+  const { ime, latitude, longitude } = selectedParkingLocation;
+
+  // Update the map with the selected parking location
+  updateCurrentLocationMarker(latitude, longitude, `Izbrana lokacija: ${ime}`);
+
+  // Save the location to localStorage (as needed)
+  const userData = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (userData) {
+    userData.location = ime;
+    localStorage.setItem("loggedInUser", JSON.stringify(userData));
+  }
+
+  // Update the DOM
+  const locationSpan = document.getElementById("last-location");
+  if (locationSpan) {
+    locationSpan.innerHTML = ` <strong>${ime}</strong>`;
+  }
+
+  // Show confirmation
+  showToast(`Izbrana lokacija: ${ime}`, "success");
+
+  // Close the modal
+  closeModal();
+}
+
+// Expose it to the global window object so that onclick can access it
+window.confirmSelectedParking = confirmSelectedParking;
 
 function showDropdown() {
   document.querySelector(".dropdown-parking").style.display = "block";
