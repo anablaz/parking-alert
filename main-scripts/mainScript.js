@@ -7,37 +7,68 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById("inputPassword");
 
     loginForm.addEventListener("submit", function (e) {
-      e.preventDefault(); // Preprečevanje osvežitve strani z obrazcem
+      e.preventDefault(); // Prevent page refresh when submitting the form
+
+      // Define the fetchLocation function that retrieves the user's location
+      async function fetchLocation() {
+        return new Promise((resolve, reject) => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const location = `Lat: ${position.coords.latitude}, Lon: ${position.coords.longitude}`;
+                resolve(location);
+              },
+              (err) => {
+                reject("Geolocation error: " + err.message);
+              }
+            );
+          } else {
+            reject("Geolocation is not supported by this browser.");
+          }
+        });
+      }
 
       const email = usernameInput.value.trim();
       const password = passwordInput.value.trim();
-
       console.log(
-        `Poskus prijave z e-pošto: ${email} in geslom: ${password}`
+        `Attempting login with email: ${email} and password: ${password}`
       );
 
-      // Create GPS instance
-      const gpsInstance = new SVGPS(showToast, fetchCurrentLocation);
+      // Create the GPS instance
+      const gpsInstance = new SVGPS(showToast, fetchLocation);
 
-      // Poskus prijave z uporabo statične metode razreda ZMStudent
-      const user = ZMStudent.prijava(email, password); // Statični klic metode
+      // Log email and password for debugging
+      console.log(`Poskus prijave z e-pošto: ${email} in geslom: ${password}`);
+
+      // Attempt login with static `prijava` method from `ZMStudent` class
+      const user = ZMStudent.prijava(email, password);
 
       if (user) {
-
-        // Attach GPS to user object
+        // If login is successful, initialize the GPS with the user
         user.gps = gpsInstance;
-        // Login successful
-        showToast("Prijava uspešna!", "success");
 
-        // Shranjevanje prijavljenega uporabnika v localStorage
+        // Optionally: Call `fetchCurrentLocation` after successful login
+        user
+          .fetchCurrentLocation()
+          .then((location) => {
+            console.log("User's current location:", location);
+          })
+          .catch((err) => {
+            console.error("Error fetching location:", err);
+          });
+
+        // Store the logged-in user in localStorage for future use
         localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-        // Počakaj, da se toast konča, in preusmerite
+        // Debug: Ensure we're reaching the redirect code
+        console.log("Redirecting to profile page...");
+
+        // Redirect to the profile page
         setTimeout(() => {
-          window.location.replace("/front-end/profil.html"); // Preusmeritev na stran profila
-        }, 2000); // Ta čas (v milisekundah) prilagodite glede na to, kako dolgo želite čakati na toast.
+          window.location.href = "/front-end/profil.html"; // Redirect to profile page after login
+        }, 2000);
       } else {
-        // Login failed
+        // If login fails, show error message
         showToast("Napačen email ali geslo.", "error");
       }
     });
@@ -67,7 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // Uporabnik se lahko odjavi iz aplikacije
 function logout() {
   const userData = JSON.parse(localStorage.getItem("loggedInUser"));
-  console.log("Uporabniški podatki, pridobljeni iz shrambe localStorage:", userData);
+  console.log(
+    "Uporabniški podatki, pridobljeni iz shrambe localStorage:",
+    userData
+  );
 
   // Dodaj to vrstico, da preveri, kaj je v userData
   console.log(userData); // Debugging line
@@ -223,9 +257,7 @@ function openDeleteModal() {
         modal.style.display = "none";
       };
     })
-    .catch(
-      (err) => console.error("Ni uspelo naložiti modalnega okna:", err),
-    );
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
 }
 
 function deleteAccount() {
@@ -266,11 +298,8 @@ function openPrijaviRedarModal() {
         modal.style.display = "none";
       };
     })
-    .catch(
-      (err) => console.error("Ni uspelo naložiti modalnega okna:", err),
-    );
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
 }
-
 
 // TOGGLE GPS MODAL
 function openToggleGPS() {
@@ -286,7 +315,7 @@ function openToggleGPS() {
 
       // Preverite stanje geolokacije in nastavite stanje preklapljanja
       isGeolocationEnabled().then((geolocationEnabled) => {
-        const gpsToggle = document.getElementById('gpsToggle');
+        const gpsToggle = document.getElementById("gpsToggle");
 
         if (geolocationEnabled) {
           gpsToggle.checked = true; // Če je geolokacija omogočena, nastavi preklop na „vklopljeno“.
@@ -299,9 +328,9 @@ function openToggleGPS() {
       });
 
       // Dodaj poslušalca dogodka za preklapljanje GPS ob spremembi
-      const gpsToggle = document.getElementById('gpsToggle');
+      const gpsToggle = document.getElementById("gpsToggle");
       if (gpsToggle) {
-        gpsToggle.addEventListener('change', async (event) => {
+        gpsToggle.addEventListener("change", async (event) => {
           const isChecked = event.target.checked;
 
           if (isChecked) {
@@ -341,7 +370,7 @@ function isGeolocationEnabled() {
 
 // Funkcija za posodobitev besedila stanja GPS v modalnem oknu
 function updateGPSStatus(isChecked) {
-  const gpsStatus = document.getElementById('gpsStatus');
+  const gpsStatus = document.getElementById("gpsStatus");
 
   if (gpsStatus) {
     if (isChecked) {
