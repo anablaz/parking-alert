@@ -1,0 +1,25 @@
+<div class="modal" id="izberiParkirisceModal" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Izberi Lokacijo</h5>
+          <button type="button" class="close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          Prosim izberite lokacijo iz spodnjega seznama:
+          <input type="text" id="searchParking" placeholder="Iskanje parkirišča..." class="form-control mt-3">
+          <select id="parkingList" size="10" class="form-control mt-3" onchange="selectParking()">
+            <!-- Dynamically filled options will go here -->
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal()">Prekliči</button>
+          <button class="btn btn-danger">Izbriši</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="/front-end/assets/js/toast/toast.js"></script>
+  <script src="/main-scripts/mainScript.js"></script>

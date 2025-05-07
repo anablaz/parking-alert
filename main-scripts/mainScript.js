@@ -30,9 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const email = usernameInput.value.trim();
       const password = passwordInput.value.trim();
-      console.log(
-        `Poskus prijave z e-pošto: ${email} in geslo: ${password}`
-      );
+      console.log(`Poskus prijave z e-pošto: ${email} in geslo: ${password}`);
 
       // Ustvarjanje instance GPS
       const gpsInstance = new SVGPS(showToast, fetchLocation);
@@ -63,7 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Odpravljanje napak: Prepričajmo se, da smo dosegli kodo za preusmeritev
         console.log("Redirecting to profile page...");
         showToast(
-          `Prijava uspešna! Pozdravljen/a ${user.ime} ${user.priimek}.`, "success")
+          `Prijava uspešna! Pozdravljen/a ${user.ime} ${user.priimek}.`,
+          "success"
+        );
 
         // Preusmeritev na stran profila
         setTimeout(() => {
@@ -379,6 +379,71 @@ function updateGPSStatus(isChecked) {
       gpsStatus.textContent = "GPS je vklopljen";
     } else {
       gpsStatus.textContent = "GPS je izklopljen";
+    }
+  }
+}
+
+// IZBERI PARKIRIŠČE
+function izberiLokacijoModal() {
+  fetch("modals/izberiParkirisceModal.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("izberiParkirisceModal").innerHTML = html;
+
+      const modal = document.querySelector("#izberiParkirisceModal .modal");
+      if (modal) {
+        modal.style.display = "block";
+      }
+
+      // Populate the parking list dynamically with the imported data
+      populateParkingList();
+
+      // Add event listener for search input to filter parking options
+      const searchInput = document.getElementById("searchParking");
+      searchInput.addEventListener("input", function (e) {
+        filterParkingList(e.target.value.toLowerCase());
+      });
+
+      // Optional: Add event listener for delete button if required
+      const deleteButton = document.querySelector("#deleteButton");
+      if (deleteButton) {
+        // deleteButton.addEventListener("click", () => deleteAccount());
+      }
+
+      // Redefiniraj closeModal, da bo na voljo po vstavitvi
+      window.closeModal = function () {
+        modal.style.display = "none";
+      };
+    })
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
+}
+
+// Function to populate the parking list dynamically using the imported data
+function populateParkingList() {
+  const parkingList = document.getElementById("parkingList");
+  parkingList.innerHTML = ""; // Clear previous options
+
+  // Loop through the imported parkirnaMesta and create <option> elements
+  parkirnaMesta.forEach((parkirisce) => {
+    const option = document.createElement("option");
+    option.value = parkirisce.ime;
+    option.textContent = parkirisce.ime;
+    parkingList.appendChild(option);
+  });
+}
+
+// Function to filter parking list based on the search input
+function filterParkingList(query) {
+  const parkingList = document.getElementById("parkingList");
+  const options = parkingList.getElementsByTagName("option");
+
+  // Loop through all options and hide those that don't match the search query
+  for (let option of options) {
+    const name = option.textContent.toLowerCase();
+    if (name.includes(query)) {
+      option.style.display = "block"; // Show matching option
+    } else {
+      option.style.display = "none"; // Hide non-matching option
     }
   }
 }

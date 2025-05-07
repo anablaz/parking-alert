@@ -45,14 +45,20 @@
     <!--User Data-->
     <script src="/front-end/assets/js/dummyData/userLoginData.js"></script>
 
+    <!--Parkirišča Data-->
+    <script
+      type="module"
+      src="/front-end/assets/js/dummyData/parkingdata.js"
+    ></script>
+
+    <!-- Glavne razrede in funkcije -->
+    <script src="/main-scripts/mainScript.js"></script>
+
     <!-- ZMStudenti-->
     <script src="/main-scripts/studenti.js"></script>
 
     <!-- GPS Script-->
     <script src="/main-scripts/gps.js"></script>
-
-    <!-- Glavne razrede in funkcije -->
-    <script src="/main-scripts/mainScript.js"></script>
   </head>
 
   <body>
@@ -631,7 +637,11 @@
                   >
                     GPS
                   </button>
-                  <button class="btn btn-primary danger-profile" type="button">
+                  <button
+                    class="btn btn-primary danger-profile"
+                    onclick="izberiLokacijoModal()"
+                    type="button"
+                  >
                     Izberi lokacijo
                   </button>
                   <button
@@ -1017,6 +1027,8 @@
       <div id="prijaviRedarModalContainer"></div>
       <!-- Div za GPS -->
       <div id="gpsModal"></div>
+      <!-- Div za Izberi lokacijo -->
+      <div id="izberiParkirisceModal"></div>
       <!-- Footer -->
       <footer>
         <div class="footer-content">
