@@ -1,25 +1,113 @@
-<div class="modal" id="izberiParkirisceModal" style="display:none;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Izberi Lokacijo</h5>
-          <button type="button" class="close" onclick="closeModal()">&times;</button>
+<div class="modal" id="izberiParkirisceModal" style="display: none">
+  <div class="modal-dialog dropdown-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Izberi Lokacijo</h5>
+        <button type="button" class="close" onclick="closeModal()">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body modal-body-parking">
+        Prosim izberite lokacijo iz spodnjega seznama:
+        <div class="dropdown-container mt-3">
+          <input
+            type="text"
+            id="searchParking"
+            placeholder="Iskanje parkirišča..."
+            class="form-control"
+            oninput="filterParkingList()"
+            onfocus="showDropdown()" 
+            onblur="hideDropdown()"
+          />
+          <div class="dropdown-parking">
+            <ul id="parkingList" class="dropdown-list">
+              <!-- Dynamically filled options will go here -->
+            </ul>
+          </div>
         </div>
-        <div class="modal-body">
-          Prosim izberite lokacijo iz spodnjega seznama:
-          <input type="text" id="searchParking" placeholder="Iskanje parkirišča..." class="form-control mt-3">
-          <select id="parkingList" size="10" class="form-control mt-3" onchange="selectParking()">
-            <!-- Dynamically filled options will go here -->
-          </select>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" onclick="closeModal()">Prekliči</button>
-          <button class="btn btn-danger">Izbriši</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">
+          Prekliči
+        </button>
+        <button class="btn btn-success">Izberi</button>
       </div>
     </div>
   </div>
-  
+</div>
 
-  <script src="/front-end/assets/js/toast/toast.js"></script>
-  <script src="/main-scripts/mainScript.js"></script>
+<style>
+  /* Modal styles */
+  .dropdown-dialog {
+    max-width: 700px;
+    height: 500px;
+  }
+
+  .modal-body-parking {
+    max-height: 600px;
+    height: 500px;
+    overflow-y: auto;
+  }
+
+  .dropdown-container {
+    position: relative;
+    margin-top: 20px;
+  }
+  .dropdown-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+  /* Dropdown styles for better visuals */
+  .dropdown-parking {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none; /* Hide initially */
+    max-height: 400px; /* Set a max height */
+    overflow-y: auto;
+    z-index: 100;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .dropdown-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dropdown-list li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-list li:hover {
+    background-color: #f1f1f1;
+  }
+
+  input.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+
+  input.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+</style>
+
+<script src="/front-end/assets/js/dummyData/parkingdata.js"></script>
+<script src="/front-end/assets/js/toast/toast.js"></script>
+<script src="/main-scripts/mainScript.js"></script>

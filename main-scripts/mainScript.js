@@ -373,30 +373,60 @@ function izberiLokacijoModal() {
 
 // Function to populate the parking list dynamically using the imported data
 function populateParkingList() {
-  const parkingList = document.getElementById("parkingList");
-  parkingList.innerHTML = ""; // Clear previous options
+  import("/front-end/assets/js/dummyData/parkingdata.js")
+    .then((module) => {
+      const parkirnaMesta = module.parkirnaMesta;
+      console.log("Parkirna mesta:", parkirnaMesta);
 
-  // Loop through the imported parkirnaMesta and create <option> elements
-  parkirnaMesta.forEach((parkirisce) => {
-    const option = document.createElement("option");
-    option.value = parkirisce.ime;
-    option.textContent = parkirisce.ime;
-    parkingList.appendChild(option);
-  });
+      parkirnaMesta.forEach((parkirisce) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = parkirisce.ime;
+        listItem.onclick = () => selectParking(parkirisce);
+        parkingList.appendChild(listItem);
+      });
+
+      document.querySelector(".dropdown").classList.add("show");
+    })
+    .catch((error) => {
+      console.error("Error loading parking data:", error);
+    });
+
+  // Display the dropdown once options are populated
+  document.querySelector(".dropdown-parking").classList.add("show");
 }
 
-// Function to filter parking list based on the search input
-function filterParkingList(query) {
+// Function to filter the parking list based on the search input
+function filterParkingList(searchText) {
   const parkingList = document.getElementById("parkingList");
-  const options = parkingList.getElementsByTagName("option");
+  const listItems = parkingList.getElementsByTagName("li");
 
-  // Loop through all options and hide those that don't match the search query
-  for (let option of options) {
-    const name = option.textContent.toLowerCase();
-    if (name.includes(query)) {
-      option.style.display = "block"; // Show matching option
+  for (let i = 0; i < listItems.length; i++) {
+    const item = listItems[i];
+    const name = item.textContent.toLowerCase();
+
+    if (name.includes(searchText)) {
+      item.style.display = "block";
     } else {
-      option.style.display = "none"; // Hide non-matching option
+      item.style.display = "none";
     }
   }
+}
+
+
+// Function to select a parking spot from the list
+function selectParking(parkirisce) {
+  // Set the value of the input to the selected parking spot
+  document.getElementById("searchParking").value = parkirisce.ime;
+
+}
+
+function showDropdown() {
+  document.querySelector(".dropdown-parking").style.display = "block";
+}
+
+function hideDropdown() {
+  // Delay hiding to allow selection of list item
+  setTimeout(() => {
+    document.querySelector(".dropdown-parking").style.display = "none";
+  }, 200);
 }
