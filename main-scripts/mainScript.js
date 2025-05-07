@@ -276,34 +276,6 @@ function deleteAccount() {
 }
 
 // POROČANJE O OPAŽENIH REDARJUEV
-function openPrijaviRedarModal() {
-  fetch("modals/prijaviRedarModal.html")
-    .then((response) => response.text())
-    .then((html) => {
-      document.getElementById("prijaviRedarModalContainer").innerHTML = html;
-
-      const modal = document.querySelector(
-        "#prijaviRedarModalContainer .modal"
-      );
-      if (modal) {
-        modal.style.display = "block";
-      }
-
-      // Dodaj poslušalca dogodkov za gumb prijavi znotraj modalnega okna
-      const prijaviButton = document.querySelector("#prijaviRedar");
-      if (prijaviButton) {
-        // deleteButton.addEventListener("click", () => deleteAccount());
-      }
-
-      // Redefiniraj closeModal, da bo na voljo po vstavitvi
-      window.closeModal = function () {
-        modal.style.display = "none";
-      };
-    })
-    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
-}
-
-// TOGGLE GPS MODAL
 function openToggleGPS() {
   fetch("modals/switchGPSModal.html")
     .then((response) => response.text())
@@ -311,75 +283,56 @@ function openToggleGPS() {
       document.getElementById("gpsModal").innerHTML = html;
 
       const modal = document.querySelector("#gpsModal .modal");
-      if (modal) {
-        modal.style.display = "block";
-      }
+      if (modal) modal.style.display = "block";
 
-      // Preverite stanje geolokacije in nastavite stanje preklapljanja
+      const gpsToggle = document.getElementById("gpsToggle");
+
+      // Only check geolocation once on modal open
       isGeolocationEnabled().then((geolocationEnabled) => {
-        const gpsToggle = document.getElementById("gpsToggle");
-
-        if (geolocationEnabled) {
-          gpsToggle.checked = true; // Če je geolokacija omogočena, nastavi preklop na „vklopljeno“.
-        } else {
-          gpsToggle.checked = false; // Če geolokacija ni omogočena, nastavi preklop na „izklopljeno“.
-        }
-
-        // Posodobitev besedila stanja glede na stanje preklopa
-        updateGPSStatus(gpsToggle.checked);
+        console.log("Initial geolocation check:", geolocationEnabled);
+        gpsToggle.checked = geolocationEnabled;
+        updateGPSStatus(geolocationEnabled);
       });
 
-      // Dodaj poslušalca dogodka za preklapljanje GPS ob spremembi
-      const gpsToggle = document.getElementById("gpsToggle");
+      // Toggle event — updates UI only
       if (gpsToggle) {
-        gpsToggle.addEventListener("change", async (event) => {
+        gpsToggle.addEventListener("change", (event) => {
           const isChecked = event.target.checked;
-
-          if (isChecked) {
-            // Vključi GPS
-            await student.vklopiGPS(); // Uporabi metodo ZMStudent za omogočanje GPS
-          } else {
-            // Izklop GPS
-            student.izklopiGPS(); // Uporabi metodo ZMStudent za onemogočanje GPS
-          }
-
-          // Posodobitev besedila o stanju GPS
-          updateGPSStatus(isChecked);
+          console.log("GPS Toggle Changed: ", isChecked);
+          updateGPSStatus(isChecked); // Just update the text
         });
       }
-      // Redefiniraj closeModal, da bo na voljo po vstavitvi
+
+      // Modal close function
       window.closeModal = function () {
         modal.style.display = "none";
       };
     })
-
     .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
 }
 
-// Funkcija za preverjanje, ali je v brskalniku omogočena geolokacija
+// Check geolocation support
 function isGeolocationEnabled() {
   return new Promise((resolve) => {
     if (!("geolocation" in navigator)) {
-      resolve(false); // Geolocation not supported
+      resolve(false);
     } else {
       navigator.geolocation.getCurrentPosition(
-        () => resolve(true), // Če je geolokacija dovoljena
-        () => resolve(false) // Če je geolokacija zavrnjena
+        () => resolve(true),
+        () => resolve(false)
       );
     }
   });
 }
 
-// Funkcija za posodobitev besedila stanja GPS v modalnem oknu
+// Updates the GPS status text in the modal
 function updateGPSStatus(isChecked) {
   const gpsStatus = document.getElementById("gpsStatus");
+  console.log("Updating GPS Status with innerHTML:", isChecked);
 
   if (gpsStatus) {
-    if (isChecked) {
-      gpsStatus.textContent = "GPS je vklopljen";
-    } else {
-      gpsStatus.textContent = "GPS je izklopljen";
-    }
+    gpsStatus.innerHTML = isChecked ? "GPS je vklopljen" : "GPS je izklopljen";
+    console.log("Status text set to:", gpsStatus.innerHTML);
   }
 }
 

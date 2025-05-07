@@ -1826,6 +1826,16 @@ footer a:hover {
   }
 }
 
+#gpsStatus{
+  margin-left: 10px;
+}
+
+.gpsClass{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
 /**
  * LEFT MENU
  * Left mobile menu
