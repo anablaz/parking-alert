@@ -39,28 +39,28 @@ class SVGPS {
     } catch (err) {
       this.showToast("Ni mogoče pridobiti lokacije.", "error");
       console.error("Napaka pri GPS lokaciji:", err);
-      this.location = null; // Reset location on error
+      this.location = null; // Ponastavitev lokacije ob napaki
     }
   }
 
-  // Method to turn off GPS
+  // Način izklopa sistema GPS
   izklopiGPS() {
     this.#jeVklopljen = false;
     this.showToast("GPS je bil izklopljen.", "info");
     this.location = null;
 
-    // Optional UI reset
+    // Izbirna ponastavitev uporabniškega vmesnika
     if (typeof this.resetLocationUI === "function") {
       this.resetLocationUI();
     }
   }
 
-  // Method to check if GPS is turned on
+  // Metoda za preverjanje, ali je vklopljen GPS
   isGPSVklopljen() {
     return this.#jeVklopljen;
   }
 
-  // Method to simulate removing a Redar (inspector)
+  // Metoda za simulacijo odstranjevanja Redarja
   izslediRedar() {
     // Logic to return a Redar object
     return {

@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById("inputPassword");
 
     loginForm.addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevent page refresh when submitting the form
+      e.preventDefault(); // Preprečitev osvežitve strani ob oddaji obrazca
 
-      // Define the fetchLocation function that retrieves the user's location
+      // Opredelitev funkcije fetchLocation, ki pridobi lokacijo uporabnika
       async function fetchLocation() {
         return new Promise((resolve, reject) => {
           if (navigator.geolocation) {
@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 resolve(location);
               },
               (err) => {
-                reject("Geolocation error: " + err.message);
+                reject("Napaka geografske lokacije: " + err.message);
               }
             );
           } else {
-            reject("Geolocation is not supported by this browser.");
+            reject("Ta brskalnik ne podpira geolokacije.");
           }
         });
       }
@@ -31,46 +31,46 @@ document.addEventListener("DOMContentLoaded", function () {
       const email = usernameInput.value.trim();
       const password = passwordInput.value.trim();
       console.log(
-        `Attempting login with email: ${email} and password: ${password}`
+        `Poskus prijave z e-pošto: ${email} in geslo: ${password}`
       );
 
-      // Create the GPS instance
+      // Ustvarjanje instance GPS
       const gpsInstance = new SVGPS(showToast, fetchLocation);
 
-      // Log email and password for debugging
+      // Izpiši e-pošto in geslo za debugging
       console.log(`Poskus prijave z e-pošto: ${email} in geslom: ${password}`);
 
-      // Attempt login with static `prijava` method from `ZMStudent` class
+      // Poskus prijave s statično metodo `prijava` iz razreda `ZMStudent`
       const user = ZMStudent.prijava(email, password);
 
       if (user) {
-        // If login is successful, initialize the GPS with the user
+        // Če je prijava uspešna, inicializirajte GPS z uporabnikom
         user.gps = gpsInstance;
 
-        // Optionally: Call `fetchCurrentLocation` after successful login
+        // Po uspešni prijavi pokliči `fetchCurrentLocation`
         user
           .fetchCurrentLocation()
           .then((location) => {
-            console.log("User's current location:", location);
+            console.log("Uporabnikova trenutna lokacija:", location);
           })
           .catch((err) => {
-            console.error("Error fetching location:", err);
+            console.error("Napaka pri pridobivanju lokacije:", err);
           });
 
-        // Store the logged-in user in localStorage for future use
+        // Shranjevanje prijavljenega uporabnika v shrambo localStorage za prihodnjo uporabo
         localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-        // Debug: Ensure we're reaching the redirect code
+        // Odpravljanje napak: Prepričajmo se, da smo dosegli kodo za preusmeritev
         console.log("Redirecting to profile page...");
         showToast(
           `Prijava uspešna! Pozdravljen/a ${user.ime} ${user.priimek}.`, "success")
 
-        // Redirect to the profile page
+        // Preusmeritev na stran profila
         setTimeout(() => {
-          window.location.href = "/front-end/profil.html"; // Redirect to profile page after login
+          window.location.href = "/front-end/profil.html";
         }, 2000);
       } else {
-        // If login fails, show error message
+        // Če prijava ne uspe, prikaži sporočilo o napaki
         showToast("Napačen email ali geslo.", "error");
       }
     });
