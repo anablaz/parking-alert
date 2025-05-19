@@ -16,7 +16,7 @@
             placeholder="Iskanje parkirišča..."
             class="form-control"
             oninput="filterParkingList()"
-            onfocus="showDropdown()" 
+            onfocus="showDropdown()"
           />
           <div class="dropdown-parking">
             <ul id="parkingList" class="dropdown-list">
@@ -26,10 +26,10 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-danger" onclick="closeModal()">
-          Prekliči
+        <button class="btn btn-danger" onclick="closeModal()">Prekliči</button>
+        <button class="btn btn-primary" onclick="confirmSelectedParking()">
+          Izberi
         </button>
-        <button class="btn btn-primary" onclick="confirmSelectedParking()">Izberi</button>
       </div>
     </div>
   </div>
@@ -106,12 +106,13 @@
     outline: none;
   }
   .dropdown-list li.selected {
-  background-color: #d1e7ff; /* light blue */
-  font-weight: bold;
-}
-
+    background-color: #d1e7ff; /* light blue */
+    font-weight: bold;
+  }
 </style>
 
 <script src="/front-end/assets/js/dummyData/parkingdata.js"></script>
 <script src="/front-end/assets/js/toast/toast.js"></script>
 <script src="/main-scripts/studenti.js"></script>
+<!-- Skripta Funkcij-->
+<script src="/front-end/assets/js/funtionsScript.js"></script>
