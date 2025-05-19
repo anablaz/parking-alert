@@ -10,7 +10,6 @@ class SVGPS {
     this.location = null;
   }
 
-
   // Method to simulate acquiring location of a Student
   pridobiLokacijo() {
     if (this.location) {
@@ -65,7 +64,7 @@ class SVGPS {
     // Logic to return a Redar object
     return {
       ime: "Redar Novak",
-      lokacija: { x: 150, y: 250 }
+      lokacija: { x: 150, y: 250 },
     };
   }
 
@@ -78,7 +77,7 @@ class SVGPS {
   kjeBiLahkoBilRedar() {
     return {
       lokacija: { x: 170, y: 230 },
-      natančnost: "80%"
+      natančnost: "80%",
     };
   }
 }

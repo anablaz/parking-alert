@@ -123,10 +123,7 @@ class ZMStudent {
             );
             const data = await res.json();
             const locationString = data.display_name || `${lat}, ${lon}`;
-            showToast(
-              `Vaša trenutna lokacija je: ${locationString}`,
-              "info"
-            );
+            showToast(`Vaša trenutna lokacija je: ${locationString}`, "info");
             console.log("Uporabnikova rešena lokacija:", locationString);
             this.location = locationString;
 
@@ -138,19 +135,13 @@ class ZMStudent {
 
             resolve(locationString);
           } catch (error) {
-            showToast(
-              "Napaka pri pridobivanju geografske lokacije.",
-              "error"
-            );
+            showToast("Napaka pri pridobivanju geografske lokacije.", "error");
             console.error("Napaka povratnega geokodiranja:", error);
             resolve(`${lat}, ${lon}`); // Nazadovanje na surove koordinate
           }
         },
         (err) => {
-          showToast(
-            "Napaka pri pridobivanju geografske lokacije.",
-            "error"
-          );
+          showToast("Napaka pri pridobivanju geografske lokacije.", "error");
           console.error("Napaka geografske lokacije:", err);
           reject(err);
         }
@@ -173,19 +164,17 @@ class ZMStudent {
       showToast("GPS modul ni inicializiran.", "error");
       return;
     }
-  
+
     this.location = ""; // Izbriši uporabnikovo shranjeno lokacijo
     this.gps.izklopiGPS();
     showToast("GPS je izklopljen.", "info");
-  
+
     // Po želji: Izbriši lokacijo iz uporabniškega vmesnika
     const locationSpan = document.getElementById("last-location");
     if (locationSpan) {
       locationSpan.innerHTML = "<strong>Ni aktivna lokacija</strong>";
     }
   }
-
-  
 
   getProfil() {
     return {
