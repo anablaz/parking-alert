@@ -184,6 +184,7 @@
         <div
           id="nt-title-container"
           class="navbar-left running-text visible-lg"
+          style="width: 780px"
         >
           <ul class="date-top">
             <li class="entypo-calendar" style="margin-right: 5px"></li>
@@ -200,30 +201,7 @@
             <li class="meridiem"></li>
           </ul>
           <ul id="nt-title">
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160; <b>85</b
-              ><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Yogyakarta&#160;
-              <b>85</b><i class="wi-fahrenheit"></i>&#160;; Tonight- 72 °F (22.2
-              °C)
-            </li>
-
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Sttugart&#160;
-              <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
-
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Muchen&#160; <b>85</b
-              ><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
-
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Frankurt&#160;
-              <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
+            <!-- Redar descriptions will be injected here dynamically -->
           </ul>
         </div>
 
@@ -1038,6 +1016,20 @@
           imageElement.src = loggedInUser.image || "/path/to/default-image.jpg"; // fallback to default if none
         }
       });
+    </script>
+    <script type="module">
+      import { usersData } from "/front-end/assets/js/dummyData/usersData.js";
+
+      const container = document.getElementById("nt-title");
+      if (container) {
+        container.innerHTML = ""; // Clear existing <li> elements
+
+        usersData.forEach((user) => {
+          const li = document.createElement("li");
+          li.textContent = user.description;
+          container.appendChild(li);
+        });
+      }
     </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
