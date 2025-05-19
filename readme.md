@@ -45,7 +45,7 @@ Aplikacija ponuja naslednje glavne funkcionalnosti:
 
 ## Pomoč in podpora
 
-Za pomoč pri uporabi aplikacije ali prijavo težav, nas lahko kontaktirate preko e-pošte na **test@example.si**.
+Za pomoč pri uporabi aplikacije ali prijavo težav, nas lahko kontaktirate.
 
 ## Avtorji
 
