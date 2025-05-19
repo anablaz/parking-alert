@@ -549,45 +549,6 @@ function hideDropdown() {
   }, 200);
 }
 
-// IZBRIS RAČUNA
-function openDeleteModal() {
-  fetch("modals/izbrisiRacunModal.html")
-    .then((response) => response.text())
-    .then((html) => {
-      document.getElementById("deleteModalContainer").innerHTML = html;
-
-      const modal = document.querySelector("#deleteModalContainer .modal");
-      if (modal) {
-        modal.style.display = "block";
-      }
-
-      // Dodaj poslušalca dogodkov za gumb za brisanje znotraj modalnega okna
-      const deleteButton = document.querySelector("#deleteButton");
-      if (deleteButton) {
-        deleteButton.addEventListener("click", () => deleteAccount());
-      }
-
-      // Redefiniraj closeModal, da bo na voljo po vstavitvi
-      window.closeModal = function () {
-        modal.style.display = "none";
-      };
-    })
-    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
-}
-
-function deleteAccount() {
-  const user = JSON.parse(localStorage.getItem("loggedInUser"));
-  if (user) {
-    // Ustvari primerek ZMStudent
-    const loggedInUser = new ZMStudent(user);
-    localStorage.removeItem("loggedInUser");
-    // Pokliči metodo izbrisiRacun, da izbrišete račun
-    loggedInUser.izbrisiProfil();
-  } else {
-    showToast("Napaka pri brisanju računa.", "error");
-  }
-}
-
 function openToggleGPS() {
   fetch("modals/switchGPSModal.html")
     .then((response) => response.text())
@@ -645,5 +606,44 @@ function updateGPSStatus(isChecked) {
   if (gpsStatus) {
     gpsStatus.innerHTML = isChecked ? "GPS je vklopljen" : "GPS je izklopljen";
     console.log("Status text set to:", gpsStatus.innerHTML);
+  }
+}
+
+// IZBRIS RAČUNA
+function openDeleteModal() {
+  fetch("modals/izbrisiRacunModal.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("deleteModalContainer").innerHTML = html;
+
+      const modal = document.querySelector("#deleteModalContainer .modal");
+      if (modal) {
+        modal.style.display = "block";
+      }
+
+      // Dodaj poslušalca dogodkov za gumb za brisanje znotraj modalnega okna
+      const deleteButton = document.querySelector("#deleteButton");
+      if (deleteButton) {
+        deleteButton.addEventListener("click", () => deleteAccount());
+      }
+
+      // Redefiniraj closeModal, da bo na voljo po vstavitvi
+      window.closeModal = function () {
+        modal.style.display = "none";
+      };
+    })
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
+}
+
+function deleteAccount() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (user) {
+    // Ustvari primerek ZMStudent
+    const loggedInUser = new ZMStudent(user);
+    localStorage.removeItem("loggedInUser");
+    // Pokliči metodo izbrisiRacun, da izbrišete račun
+    loggedInUser.izbrisiProfil();
+  } else {
+    showToast("Napaka pri brisanju računa.", "error");
   }
 }
