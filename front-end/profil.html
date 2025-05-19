@@ -1006,10 +1006,6 @@
 
     <!--  Dummy podatki o uporabnikih za notif -->
     <script src="/front-end/assets/js/dummyData/usersData.js"></script>
-    <script
-      type="module"
-      src="assets/js/readData/readUserNotifData.js"
-    ></script>
 
     <!-- KONEC VSEBINE DESNEGA DRSNIKA-->
 
@@ -1116,6 +1112,37 @@
       const sortedCities = sortCitiesWithLjubljanaFirst(slovenskaMesta);
       const paginatedCities = paginateCities(sortedCities);
       renderCityListPage(currentCityPage, paginatedCities);
+    </script>
+    <script type="module">
+      import { usersData } from "/front-end/assets/js/dummyData/usersData.js";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const latestFive = usersData.slice(0, 5);
+        const dropdown = document.getElementById("messageDropdown");
+
+        // Clear dropdown first
+        dropdown.innerHTML = "";
+
+        latestFive.forEach((user, index) => {
+          dropdown.innerHTML += `
+        <li style="padding: 10px; margin: 0; list-style: none;">
+          <a href="#">
+            <img alt="" class="img-msg img-circle" src="${user.userImage}" />
+            ${user.name} <b>${user.timeAgo}</b><br />
+            <small>${user.description}</small>
+          </a>
+        </li>
+        ${index < latestFive.length - 1 ? '<li class="divider"></li>' : ""}
+      `;
+        });
+
+        // Add the "See All Messages" link
+        dropdown.innerHTML += `
+      <li>
+        <div style="width: 100%">See All Messages</div>
+      </li>
+    `;
+      });
     </script>
   </body>
 </html>
