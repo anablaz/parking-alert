@@ -38,7 +38,7 @@ class KParking {
             new Date(),
             this
           );
-          opotorilo.posljiOpozorilo();
+          opozorilo.posljiOpozorilo();
           //TODO neki, da se preveri, ali je opozorilo potrjeno
         }
       });
