@@ -174,6 +174,7 @@
         <div
           id="nt-title-container"
           class="navbar-left running-text visible-lg"
+          style="width: 780px"
         >
           <ul class="date-top">
             <li class="entypo-calendar" style="margin-right: 5px"></li>
@@ -190,30 +191,7 @@
             <li class="meridiem"></li>
           </ul>
           <ul id="nt-title">
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160; <b>85</b
-              ><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Yogyakarta&#160;
-              <b>85</b><i class="wi-fahrenheit"></i>&#160;; Tonight- 72 °F (22.2
-              °C)
-            </li>
-
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Sttugart&#160;
-              <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
-
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Muchen&#160; <b>85</b
-              ><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
-
-            <li>
-              <i class="wi-day-lightning"></i>&#160;&#160;Frankurt&#160;
-              <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
-            </li>
+            <!-- Redar descriptions will be injected here dynamically -->
           </ul>
         </div>
 
@@ -618,7 +596,6 @@
 
     <!-- Uporabniki -->
     <script src="/front-end/assets/js/dummyData/usersData.js"></script>
-    <script src="/front-end/assets/js/readData/readUsersData.js"></script>
     <script src="/front-end/assets/js/readData/readUserNotifData.js"></script>
     <script src="/front-end/assets/js/dummyData/cities.js"></script>
     <script>
@@ -709,6 +686,79 @@
       const sortedCities = sortCitiesWithLjubljanaFirst(slovenskaMesta);
       const paginatedCities = paginateCities(sortedCities);
       renderCityListPage(currentCityPage, paginatedCities);
+    </script>
+    <script type="module">
+      import { usersData } from "/front-end/assets/js/dummyData/usersData.js";
+
+      const container = document.getElementById("nt-title");
+      if (container) {
+        container.innerHTML = ""; // Clear existing <li> elements
+
+        usersData.forEach((user) => {
+          const li = document.createElement("li");
+          li.textContent = user.description;
+          container.appendChild(li);
+        });
+      }
+    </script>
+    <script type="module">
+      import { usersData } from "/front-end/assets/js/dummyData/usersData.js";
+
+      // Function to populate the table
+      function populateTable() {
+        const tableBody = document.querySelector("#site table tbody");
+
+        usersData.forEach((user) => {
+          const row = document.createElement("tr");
+
+          // Cell 1: Armada/Time
+          const cell1 = document.createElement("td");
+          cell1.classList.add("armada-devider");
+
+          const armadaDiv = document.createElement("div");
+          armadaDiv.classList.add("armada");
+
+          const userSpan = document.createElement("span");
+          userSpan.style.background = "#65c3df";
+          userSpan.innerHTML = `<span class="fa fa-user"></span>&nbsp;&nbsp;User`;
+
+          const timeParagraph = document.createElement("p");
+          timeParagraph.innerHTML = `<span class="entypo-gauge"></span>&nbsp;${user.timeAgo} <i>ago</i>`;
+
+          armadaDiv.appendChild(userSpan);
+          armadaDiv.appendChild(timeParagraph);
+          cell1.appendChild(armadaDiv);
+          row.appendChild(cell1);
+
+          // Cell 2: User Info
+          const cell2 = document.createElement("td");
+          cell2.classList.add("driver-devider");
+
+          const img = document.createElement("img");
+          img.classList.add("armada-pic", "img-circle");
+          img.src = user.userImage;
+          img.alt = "";
+
+          const userName = document.createElement("h3");
+          userName.textContent = user.name;
+
+          cell2.appendChild(img);
+          cell2.appendChild(userName);
+          row.appendChild(cell2);
+
+          // Cell 3: Description
+          const cell3 = document.createElement("td");
+          const description = document.createElement("p");
+          description.textContent = user.description;
+          cell3.appendChild(description);
+          row.appendChild(cell3);
+
+          tableBody.appendChild(row);
+        });
+      }
+
+      // Run after DOM is ready
+      document.addEventListener("DOMContentLoaded", populateTable);
     </script>
   </body>
 </html>

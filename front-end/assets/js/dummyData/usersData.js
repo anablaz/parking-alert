@@ -1,6 +1,6 @@
 // usersData.js
 
-const usersData = [
+export const usersData = [
     {
       name: "Janez Novak",
       timeAgo: "5 min",
