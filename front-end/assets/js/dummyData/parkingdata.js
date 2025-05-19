@@ -22,3 +22,6 @@ export const parkirnaMesta = [
   { ime: "Parkirno mesto Trg Jarše", latitude: 46.071000, longitude: 14.524900 },
   { ime: "Parkirno mesto Trg Črnuče II", latitude: 46.072100, longitude: 14.526000 }
 ];
+
+
+

@@ -9,7 +9,7 @@ class ZMStudent {
     this.phone = userData.phone;
     this.image = userData.image;
 
-    this.gps = gpsInstance; // ✅ store the GPS class instance here
+    this.gps = gpsInstance; // store the GPS class instance here
 
     console.log("Uporabniški podatki, posredovani konstruktorju:", userData);
   }
@@ -498,7 +498,16 @@ let selectedParkingLocation = null;
 // Funkcija za izbiro parkirnega mesta s seznama
 function selectParking(parkirisce) {
   document.getElementById("searchParking").value = parkirisce.ime;
-  document.querySelector(".dropdown-parking").classList.remove("show");
+
+  // Highlight selected item
+  const items = document.querySelectorAll("#parkingList li");
+  items.forEach((item) => {
+    if (item.textContent === parkirisce.ime) {
+      item.classList.add("selected");
+    } else {
+      item.classList.remove("selected");
+    }
+  });
 
   // Shranjevanje izbrane lokacije v globalno spremenljivko
   selectedParkingLocation = parkirisce;
@@ -646,4 +655,66 @@ function deleteAccount() {
   } else {
     showToast("Napaka pri brisanju računa.", "error");
   }
+}
+
+// DODAJ REDAR
+function openPrijaviRedarModal() {
+  fetch("modals/prijaviRedarModal.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("prijaviRedarModalContainer").innerHTML = html;
+
+      const modal = document.querySelector("#prijaviRedarModal");
+      if (modal) {
+        modal.style.display = "block";
+      }
+
+      // === Import both parking and street data ===
+      Promise.all([
+        import("/front-end/assets/js/dummyData/parkingdata.js"),
+        import("/front-end/assets/js/dummyData/streets.js"),
+      ])
+        .then(([parkingModule, streetModule]) => {
+          const parkirnaMesta = parkingModule.parkirnaMesta;
+          const slovenskeUlice = streetModule.slovenskeUlice;
+
+          // === Populate parking dropdown ===
+          const lokacijaSelect = document.getElementById("lokacija");
+          if (lokacijaSelect) {
+            lokacijaSelect.innerHTML = `<option value="">Izberi lokacijo</option>`;
+            parkirnaMesta.forEach((parking) => {
+              const option = document.createElement("option");
+              option.value = parking.ime;
+              option.textContent = parking.ime;
+              lokacijaSelect.appendChild(option);
+            });
+          }
+
+          // === Populate street dropdown ===
+          const headingSelect = document.getElementById("heading");
+          if (headingSelect) {
+            headingSelect.innerHTML = `<option value="">Izberi ulico</option>`;
+            slovenskeUlice.forEach((ulica) => {
+              const option = document.createElement("option");
+              option.value = ulica;
+              option.textContent = ulica;
+              headingSelect.appendChild(option);
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Napaka pri nalaganju parkirišč ali ulic:", error);
+        });
+
+      // Hook up your "Prijavi" button
+      const addButton = document.querySelector("#addButton");
+      if (addButton) {
+        addButton.addEventListener("click", () => addRedar());
+      }
+
+      window.closeModal = function () {
+        modal.style.display = "none";
+      };
+    })
+    .catch((err) => console.error("Ni uspelo naložiti modalnega okna:", err));
 }

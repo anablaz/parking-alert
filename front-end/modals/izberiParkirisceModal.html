@@ -17,7 +17,6 @@
             class="form-control"
             oninput="filterParkingList()"
             onfocus="showDropdown()" 
-            onblur="hideDropdown()"
           />
           <div class="dropdown-parking">
             <ul id="parkingList" class="dropdown-list">
@@ -27,10 +26,10 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal()">
+        <button class="btn btn-danger" onclick="closeModal()">
           Prekliči
         </button>
-        <button class="btn btn-success" onclick="confirmSelectedParking()">Izberi</button>
+        <button class="btn btn-primary" onclick="confirmSelectedParking()">Izberi</button>
       </div>
     </div>
   </div>
@@ -106,6 +105,11 @@
     border-color: #007bff;
     outline: none;
   }
+  .dropdown-list li.selected {
+  background-color: #d1e7ff; /* light blue */
+  font-weight: bold;
+}
+
 </style>
 
 <script src="/front-end/assets/js/dummyData/parkingdata.js"></script>

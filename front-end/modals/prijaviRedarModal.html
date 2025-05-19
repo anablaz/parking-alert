@@ -1,32 +1,67 @@
 <!-- prijaviRedarModal.html -->
 <!-- Include the modal HTML structure in your main HTML (profil.html) -->
-<div id="prijaviRedarModal" class="modal" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Prijavi redar</h5>
-            <button type="button" class="close" onclick="closeModal()">&times;</button>
-          </div>
-          <div class="modal-body">
-            <form id="prijaviRedarForm">
-                <label for="lokacija">Lokacija:</label>
-                <input class="redar-lokacija" type="text" id="lokacija" name="lokacija" required><br><br>
-      
-                <label for="heading">Kam se premika:</label>
-                <input class="redar-premika" type="text" id="heading" name="heading" required><br><br>
-                
-                <label for="opis">Opomba:</label>
-                <textarea class="redar-premika-opomba" class="redar-opomba" id="opis" name="opis" required></textarea><br><br>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" onclick="closeModal()">Prekliči</button>
-            <button class="btn btn-success">Prijavi</button>
-          </div>
-        </div>
+<div id="prijaviRedarModal" class="modal" style="display: none">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Prijavi redar</h5>
+        <button type="button" class="close" onclick="closeModal()">
+          &times;
+        </button>
       </div>
+      <div class="modal-body">
+        <form id="prijaviRedarForm">
+          <label for="lokacija">Lokacija:</label>
+          <select id="lokacija" name="lokacija" class="redar-lokacija" required>
+            <option value="">Izberi lokacijo</option></select
+          ><br /><br />
+
+          <label for="heading">Kam se premika:</label>
+          <select class="redar-premika" id="heading" name="heading" required>
+            <option value="">Izberi ulico</option>
+          </select>
+          <br /><br />
+
+          <label for="opis">Opomba:</label>
+          <textarea
+            class="redar-premika-opomba"
+            class="redar-opomba"
+            id="opis"
+            name="opis"
+            required
+          ></textarea
+          ><br /><br />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" onclick="closeModal()">Prekliči</button>
+        <button class="btn btn-primary" id="addButton">Prijavi</button>
+      </div>
+    </div>
+  </div>
 </div>
 
+<style>
+  select#lokacija,
+  select.redar-premika {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 20 20"><polygon points="0,0 20,0 10,10" fill="%23333"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+  }
 
-  <script src="/front-end/assets/js/toast/toast.js"></script>
-  <script src="/main-scripts/studenti.js"></script>
+  select#lokacija:focus,
+  select.redar-premika:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px #007bff;
+    outline: none;
+  }
+</style>
+
+<script src="/front-end/assets/js/toast/toast.js"></script>
+<script src="/main-scripts/studenti.js"></script>
