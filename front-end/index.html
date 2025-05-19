@@ -331,32 +331,16 @@
                 </a>
               </li>
             </ul>
-            <ul class="topnav menu-left-nest">
+            <ul class="topnav menu-left-nest" id="citySidebar">
               <li>
-                <a
-                  href="#"
-                  style="border-left: 0px solid !important"
-                  class="title-menu-left"
-                >
-                  <span class="">Mesta</span>
-                  <i
-                    data-toggle="tooltip"
-                    class="entypo-cog pull-right config-wrap"
-                  ></i>
+                <a href="#" class="title-menu-left">
+                  <span>Mesta</span>
+                  <i class="entypo-cog pull-right config-wrap"></i>
                 </a>
               </li>
-
-              <li>
-                <a
-                  class="tooltip-tip ajax-load"
-                  href="/index.html"
-                  title="Dashboard"
-                >
-                  <i class="icon-map"></i>
-                  <span>Ljubljana</span>
-                </a>
-              </li>
+              <!-- All dynamic cities will be inserted below this line -->
             </ul>
+
             <ul class="topnav menu-left-nest">
               <li>
                 <a
@@ -636,6 +620,7 @@
     <script src="/front-end/assets/js/dummyData/usersData.js"></script>
     <script src="/front-end/assets/js/readData/readUsersData.js"></script>
     <script src="/front-end/assets/js/readData/readUserNotifData.js"></script>
+    <script src="/front-end/assets/js/dummyData/cities.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -674,6 +659,56 @@
           lastLoginElement.textContent = `Vaša zadnja prijava je bila ${lastLogin}`;
         }
       });
+    </script>
+    <script type="module">
+      import { slovenskaMesta } from "/front-end/assets/js/dummyData/cities.js";
+
+      const CITIES_PER_PAGE = 5;
+      let currentCityPage = 1;
+
+      function sortCitiesWithLjubljanaFirst(cities) {
+        const ljubljana = cities.filter((c) => c.toLowerCase() === "ljubljana");
+        const rest = cities
+          .filter((c) => c.toLowerCase() !== "ljubljana")
+          .sort((a, b) => a.localeCompare(b));
+        return [...ljubljana, ...rest];
+      }
+
+      function paginateCities(cities, perPage = CITIES_PER_PAGE) {
+        const pages = [];
+        for (let i = 0; i < cities.length; i += perPage) {
+          pages.push(cities.slice(i, i + perPage));
+        }
+        return pages;
+      }
+
+      function renderCityListPage(pageNumber, paginatedCities) {
+        const container = document.getElementById("citySidebar");
+        if (!container) return;
+
+        // Keep only the first <li> (title row), remove the rest
+        const lis = container.querySelectorAll("li");
+        lis.forEach((li, index) => {
+          if (index > 0) container.removeChild(li);
+        });
+
+        const cities = paginatedCities[pageNumber - 1] || [];
+
+        cities.forEach((city) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+        <a class="tooltip-tip ajax-load" href="#" title="${city}">
+          <i class="icon-map"></i>
+          <span>${city}</span>
+        </a>`;
+          container.appendChild(li);
+        });
+      }
+
+      // Main logic
+      const sortedCities = sortCitiesWithLjubljanaFirst(slovenskaMesta);
+      const paginatedCities = paginateCities(sortedCities);
+      renderCityListPage(currentCityPage, paginatedCities);
     </script>
   </body>
 </html>
